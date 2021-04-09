@@ -7,9 +7,9 @@ import retrofit2.http.Path
 interface CryptoService {
     //This returns all crypto currencies
     @GET("v2/assets/")
-    suspend fun getAllCryptoCurrencies(): List<Crypto>
+    suspend fun getAllCryptoCurrencies(): Data
 
     //This will return one cryptocurrency based on the id (which is its name)
     @GET("v2/assets/{id}")
-    suspend fun getCryptoCurrency(@Path("id") id: String): Crypto
+    suspend fun getCryptoCurrency(@Path("id") id: String): Data
 }
