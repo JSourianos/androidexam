@@ -15,5 +15,4 @@ data class Crypto(
     val priceUsd: String,
     val changePercent24hr: String,
     val vwap24hr: String,
-    val explorer: String,
-)
+    val explorer: String)
