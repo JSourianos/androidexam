@@ -17,9 +17,21 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        //This brings out a single cryptocurrency
         viewModel.singleCryptoCurrency.observe(this){ crypto ->
             binding.tvTest.text = crypto.data.name
         }
+
+        //This shows all cryptocurrencies (only selecting the first one in the array to not make the screen to full)
+        viewModel.allCryptoCurrencies.observe(this){ crypto ->
+            binding.tvTestMultiple.text = crypto.data[0].toString()
+        }
+
+        //We now need to create a RecyclerList, and fragments to represent each individual crypto currency.
+        // 1) RecyclerView with Fragment
+        // 2) Loop over allCryptoCurrency array, and populate the fragments with each object we retrieve from the API
+        // 3) Show this to the user
+        // 4) When clicking on an item in the list, navigate to a new screen (with data about the selected cryptocurrency)
+            //I think this can be achieved by grabbing the name, and then using the singleCrypto GET request to retrieve all data about it
     }
 }

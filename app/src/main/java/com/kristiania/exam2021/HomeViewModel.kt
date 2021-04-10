@@ -9,17 +9,22 @@ import kotlinx.coroutines.launch
 //The viewmodel will hold our data, for the activity we use it in
 class HomeViewModel: ViewModel(){
     //This is an instance of our service which fetches data from the crypto API
-    val cryptoService = API.cryptoService
+    private val cryptoService = API.cryptoService
 
-    //This will store all the crypto currencies
+    //This will store one the crypto currencies
     val singleCryptoCurrency = MutableLiveData<Data>()
 
+    val allCryptoCurrencies = MutableLiveData<DataList>()
     //This will run everytime we initialize the Home screen
+
     init {
         //Use Dispatchers.IO to not block the main UI thread
         viewModelScope.launch(Dispatchers.IO) {
             val cryptos = cryptoService.getCryptoCurrency("bitcoin")
             singleCryptoCurrency.postValue(cryptos)
+
+            val allCryptos = cryptoService.getAllCryptoCurrencies()
+            allCryptoCurrencies.postValue(allCryptos)
         }
     }
 }
