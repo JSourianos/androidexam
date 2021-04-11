@@ -19,14 +19,12 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //For testing the recyclerview
-        var cryptoList = mutableListOf(
-            "Ratnum"
-        )
+        var cryptoList = mutableListOf<Crypto>()
 
         val adapter = CryptoAdapter(cryptoList)
+
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-
 
 
         //This brings out a single cryptocurrency
@@ -36,7 +34,11 @@ class HomeActivity : AppCompatActivity() {
 
         //This shows all cryptocurrencies (only selecting the first one in the array to not make the screen to full)
         viewModel.allCryptoCurrencies.observe(this){ crypto ->
-            binding.tvTestMultiple.text = crypto.data[0].toString()
+
+            cryptoList.add(crypto.data[5])
+            cryptoList.add(crypto.data[1])
+
+            binding.tvTestMultiple.text = cryptoList[1].toString()
         }
 
         //We now need to create a RecyclerList, and fragments to represent each individual crypto currency.

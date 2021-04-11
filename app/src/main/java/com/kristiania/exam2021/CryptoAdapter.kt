@@ -8,7 +8,7 @@ import com.kristiania.exam2021.databinding.ItemCryptoBinding
 
 //Adapter for our RecyclerView
 class CryptoAdapter (
-    var cryptos: List<String>
+    var cryptos: List<Crypto>
     ) : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>(){
 
 
@@ -21,7 +21,7 @@ class CryptoAdapter (
 
     override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
         holder.itemView.apply {
-            holder.binding.itemCrypto.text = cryptos[position]
+            holder.binding.itemCrypto.text = cryptos[position].name
         }
     }
 
