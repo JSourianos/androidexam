@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kristiania.exam2021.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -16,6 +17,17 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //For testing the recyclerview
+        var cryptoList = mutableListOf(
+            "Ratnum"
+        )
+
+        val adapter = CryptoAdapter(cryptoList)
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+
+
 
         //This brings out a single cryptocurrency
         viewModel.singleCryptoCurrency.observe(this){ crypto ->
