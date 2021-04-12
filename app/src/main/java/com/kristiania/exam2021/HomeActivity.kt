@@ -33,12 +33,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
         //This shows all cryptocurrencies (only selecting the first one in the array to not make the screen to full)
-        viewModel.allCryptoCurrencies.observe(this){ crypto ->
-
-            cryptoList.add(crypto.data[5])
-            cryptoList.add(crypto.data[1])
-
-            binding.tvTestMultiple.text = cryptoList[1].toString()
+        viewModel.getAllCryptos().observe(this){ crypto ->
+            crypto.data.map {
+                cryptoList.add(it)
+            }
         }
 
         //We now need to create a RecyclerList, and fragments to represent each individual crypto currency.

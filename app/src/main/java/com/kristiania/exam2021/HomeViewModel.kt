@@ -27,4 +27,8 @@ class HomeViewModel: ViewModel(){
             allCryptoCurrencies.postValue(allCryptos)
         }
     }
+
+    fun getAllCryptos() : MutableLiveData<DataList> {
+        return allCryptoCurrencies
+    }
 }
