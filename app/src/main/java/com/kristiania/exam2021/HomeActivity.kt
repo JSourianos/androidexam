@@ -40,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
                 cryptoList.add(it)
                 Log.d("Crypto being mapped: ", it.name!!)
                 adapter.notifyDataSetChanged()
+                //Maybe use the getImage route with it.symbol.toLowerCase()?
             }
             adapter.notifyDataSetChanged()
         }
