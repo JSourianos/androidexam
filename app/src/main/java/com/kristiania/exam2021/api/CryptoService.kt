@@ -1,5 +1,7 @@
-package com.kristiania.exam2021
+package com.kristiania.exam2021.api
 
+import com.kristiania.exam2021.Data
+import com.kristiania.exam2021.DataList
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -12,4 +14,8 @@ interface CryptoService {
     //This will return one cryptocurrency based on the id (which is its name)
     @GET("v2/assets/{id}")
     suspend fun getCryptoCurrency(@Path("id") id: String): Data
+
+    //Get image resource
+    @GET("https://static.coincap.io/assets/icons/{symbol}@2x.png")
+    suspend fun getImage(@Path("symbol") symbol: String)
 }

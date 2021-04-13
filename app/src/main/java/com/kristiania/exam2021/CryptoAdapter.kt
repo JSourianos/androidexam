@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.kristiania.exam2021.api.CryptoService
 import com.kristiania.exam2021.databinding.ItemCryptoBinding
 import java.lang.Math.round
 import kotlin.math.roundToInt
