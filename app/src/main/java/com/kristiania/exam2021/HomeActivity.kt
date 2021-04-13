@@ -10,7 +10,6 @@ import com.kristiania.exam2021.databinding.ActivityHomeBinding
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,13 +17,15 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         //For testing the recyclerview
         var cryptoList = mutableListOf<Crypto>()
 
+        //Our RecyclerView
         val adapter = CryptoAdapter(cryptoList)
-
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
+
 
 
         //This brings out a single cryptocurrency
@@ -36,7 +37,10 @@ class HomeActivity : AppCompatActivity() {
         viewModel.getAllCryptos().observe(this){ crypto ->
             crypto.data.map {
                 cryptoList.add(it)
+                Log.d("Crypto being mapped: ", it.name!!)
+                adapter.notifyDataSetChanged()
             }
+            adapter.notifyDataSetChanged()
         }
 
         //We now need to create a RecyclerList, and fragments to represent each individual crypto currency.
