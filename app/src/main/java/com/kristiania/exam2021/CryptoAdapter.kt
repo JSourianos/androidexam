@@ -42,7 +42,7 @@ class CryptoAdapter(
         //This launches the new screen with the single crypto which you clicked on
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, SingleCryptoActivity::class.java)
-            startActivity(it.context, intent, null)
+            it.context.startActivity(intent)
         }
     }
     override fun getItemCount(): Int {

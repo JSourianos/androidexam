@@ -12,7 +12,5 @@ class SingleCryptoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySingleCryptoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.singleCryptoText.text = "Hello"
     }
 }
