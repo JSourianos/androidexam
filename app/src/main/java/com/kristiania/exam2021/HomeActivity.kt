@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        //For testing the recyclerview
+        //Our list of cryptos
         var cryptoList = mutableListOf<Crypto>()
 
         //Our RecyclerView
@@ -34,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
             binding.tvTest.text = crypto.data.name
         }
 
-        //This shows all cryptocurrencies (only selecting the first one in the array to not make the screen to full)
+        //This shows all cryptocurrencies
         viewModel.getAllCryptos().observe(this){ crypto ->
             crypto.data.map {
                 cryptoList.add(it)

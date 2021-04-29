@@ -1,8 +1,10 @@
 package com.kristiania.exam2021
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.kristiania.exam2021.api.CryptoService
 import com.kristiania.exam2021.databinding.ItemCryptoBinding
@@ -29,15 +31,20 @@ class CryptoAdapter(
             holder.binding.cryptoPrice.text = cryptos[position].priceUsd?.toDouble()?.roundToLong().toString() //This is its price in USD (without decimals)
 
             //Change color of percentage if its less than 0, meaning we have negative returns
-            if(cryptos[position].changePercent24Hr?.toDouble()!! < 0) {
+            if (cryptos[position].changePercent24Hr?.toDouble()!! < 0) {
                 holder.binding.cryptoPercent.setTextColor(resources.getColor(R.color.red))
             } else {
                 holder.binding.cryptoPercent.setTextColor(resources.getColor(R.color.green))
             }
             holder.binding.cryptoPercent.text = "${cryptos[position].changePercent24Hr?.toDouble()?.let { it.roundToInt().toString() }}%" //This is the percentage
         }
-    }
 
+        //This launches the new screen with the single crypto which you clicked on
+        holder.itemView.setOnClickListener {
+            val intent = Intent(it.context, SingleCryptoActivity::class.java)
+            startActivity(it.context, intent, null)
+        }
+    }
     override fun getItemCount(): Int {
         return cryptos.size
     }
