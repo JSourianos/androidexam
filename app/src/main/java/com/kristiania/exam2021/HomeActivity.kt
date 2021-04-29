@@ -18,6 +18,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide() //remove the navbar
 
         //Our list of cryptos
         var cryptoList = mutableListOf<Crypto>()
