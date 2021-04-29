@@ -12,5 +12,10 @@ class SingleCryptoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySingleCryptoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val startingIntent = intent
+        val cryptoName = startingIntent.getStringExtra("cryptoName")
+
+
+        binding.cryptoName.text = cryptoName
     }
 }

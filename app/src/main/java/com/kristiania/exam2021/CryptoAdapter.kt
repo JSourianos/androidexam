@@ -41,7 +41,9 @@ class CryptoAdapter(
 
         //This launches the new screen with the single crypto which you clicked on
         holder.itemView.setOnClickListener {
+            val currentCryptoName = cryptos[position].name
             val intent = Intent(it.context, SingleCryptoActivity::class.java)
+            intent.putExtra("cryptoName", currentCryptoName)
             it.context.startActivity(intent)
         }
     }
