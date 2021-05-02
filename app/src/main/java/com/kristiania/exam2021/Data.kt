@@ -6,11 +6,3 @@ import com.squareup.moshi.JsonClass
 data class Data(
     val data: Crypto
 )
-
-
-
-/*
-data class DataList(
-    val dataList: List<Crypto>
-)
- */

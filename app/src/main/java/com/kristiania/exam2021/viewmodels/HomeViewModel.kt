@@ -10,7 +10,7 @@ import com.kristiania.exam2021.DataList
 import com.kristiania.exam2021.api.API
 import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.CryptoDb
-import com.kristiania.exam2021.database.CryptoEntity
+import com.kristiania.exam2021.database.WalletEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -28,31 +28,53 @@ class HomeViewModel(context: Context) : ViewModel() {
 
     //DATABASE
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
-    private lateinit var userPoints: LiveData<Int> //We have the userPoints as LiveData so we can observe them in our HomeActivity
+    private lateinit var userPoints: MutableLiveData<Int> //We have the userPoints as LiveData so we can observe them in our HomeActivity
 
     //This entity represents the 10k which each user "get" when starting our application
-    private var entity = CryptoEntity(10000)
+    //private var entity = WalletEntity(10000)
 
     //This function adds the user points to the database when we launch the app
-    private fun addUserPoints(entity: CryptoEntity){
+    /*
+    private fun addUserPoints(entity: WalletEntity){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 cryptoDao.insertUserPoints(entity)
             }
         }
     }
+    */
+    //userPoints = result
+
+
     //This will run everytime we initialize the Home screen
     init {
+        var availableFunds: Int = 0
         //Use Dispatchers.IO to not block the main UI thread
         viewModelScope.launch(Dispatchers.IO) {
 
             //This function adds 10k user points when we launch the app
-            addUserPoints(entity)
+            //addUserPoints(entity)
 
             //This fetches the user points from the Db and adds it to our userPoints variable
             var result = cryptoDao.getUserPoints()
-            userPoints = result
 
+
+            //Add 10k to user
+            if(result.isEmpty()){
+                var walletEntity: WalletEntity = WalletEntity(10000)
+                cryptoDao.addTransaction(walletEntity)
+                result = cryptoDao.getUserPoints()
+            }
+
+            availableFunds = 69
+            /*
+
+            result.map { walletEntity ->
+                availableFunds += walletEntity.changed
+            }
+             */
+
+            userPoints.postValue(availableFunds)
 
             //Get a single crypto
             val cryptos = cryptoService.getCryptoCurrency("bitcoin")
