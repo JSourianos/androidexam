@@ -11,7 +11,7 @@ import com.kristiania.exam2021.viewmodels.HomeViewModel
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +19,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide() //remove the navbar
+
+        viewModel = HomeViewModel(this)
 
         //Our list of cryptos
         var cryptoList = mutableListOf<Crypto>()
@@ -28,11 +30,14 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-
-
         //This brings out a single cryptocurrency
+        /*
         viewModel.singleCryptoCurrency.observe(this){ crypto ->
-            binding.tvTest.text = crypto.data.name
+            binding.userPointsTv.text = crypto.data.name
+        }
+*/
+        viewModel.getUserPoints().observe(this) { userPoints ->
+            binding.userPointsTv.text = "User Points: ${userPoints?.toString()}"
         }
 
         //This shows all cryptocurrencies
