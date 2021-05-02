@@ -72,7 +72,7 @@ interface CryptoDao {
     fun getUserPoints(): List<WalletEntity>
 
     @Insert
-    fun addTransaction(walletEntity: WalletEntity): Int
+    fun addTransaction(walletEntity: WalletEntity)
     /*
 
     //Get list of crypto (we need to make a new data class for this)
@@ -83,7 +83,4 @@ interface CryptoDao {
     @Query("SELECT transactions FROM CryptoEntity")
     fun getTransactions(): LiveData<String>
      */
-
-    @Insert
-    fun insertUserPoints(vararg item: WalletEntity)
 }
