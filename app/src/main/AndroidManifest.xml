@@ -12,11 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Exam2021">
-        <activity android:name=".SingleCryptoActivity"
-            android:label="Single Crypto"></activity>
+        <activity android:name=".TransactionActivity"></activity>
+        <activity android:name=".PortfolioActivity" />
+        <activity android:name=".SellCryptoActivity" />
+        <activity
+            android:name=".BuyCryptoActivity"
+            android:label="Buy Crypto" />
+        <activity
+            android:name=".SingleCryptoActivity"
+            android:label="Single Crypto" />
         <activity
             android:name=".HomeActivity"
-            android:label="Home"></activity>
+            android:label="Home" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

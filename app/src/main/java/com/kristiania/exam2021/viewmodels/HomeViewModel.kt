@@ -5,15 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kristiania.exam2021.Data
-import com.kristiania.exam2021.DataList
+import com.kristiania.exam2021.dataclasses.Data
+import com.kristiania.exam2021.dataclasses.DataList
 import com.kristiania.exam2021.api.API
 import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.CryptoDb
 import com.kristiania.exam2021.database.WalletEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 //The viewmodel will hold our data, for the activity we use it in
 class HomeViewModel(context: Context) : ViewModel() {
@@ -28,7 +27,7 @@ class HomeViewModel(context: Context) : ViewModel() {
 
     //DATABASE
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
-    private lateinit var userPoints: MutableLiveData<Int> //We have the userPoints as LiveData so we can observe them in our HomeActivity
+    private var userPoints: MutableLiveData<Int> = MutableLiveData(10)//We have the userPoints as LiveData so we can observe them in our HomeActivity
 
     //This entity represents the 10k which each user "get" when starting our application
     //private var entity = WalletEntity(10000)
@@ -58,7 +57,6 @@ class HomeViewModel(context: Context) : ViewModel() {
             //This fetches the user points from the Db and adds it to our userPoints variable
             var result = cryptoDao.getUserPoints()
 
-
             //Add 10k to user
             if(result.isEmpty()){
                 var walletEntity: WalletEntity = WalletEntity(10000)
@@ -66,13 +64,9 @@ class HomeViewModel(context: Context) : ViewModel() {
                 result = cryptoDao.getUserPoints()
             }
 
-            availableFunds = 69
-            /*
-
             result.map { walletEntity ->
                 availableFunds += walletEntity.changed
             }
-             */
 
             userPoints.postValue(availableFunds)
 

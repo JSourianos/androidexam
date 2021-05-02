@@ -2,13 +2,10 @@ package com.kristiania.exam2021
 
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.kristiania.exam2021.api.CryptoService
 import com.kristiania.exam2021.databinding.ItemCryptoBinding
-import java.lang.Math.round
+import com.kristiania.exam2021.dataclasses.Crypto
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 

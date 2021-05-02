@@ -1,4 +1,4 @@
-package com.kristiania.exam2021
+package com.kristiania.exam2021.dataclasses
 
 import com.squareup.moshi.JsonClass
 

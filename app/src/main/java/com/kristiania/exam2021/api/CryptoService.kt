@@ -1,7 +1,7 @@
 package com.kristiania.exam2021.api
 
-import com.kristiania.exam2021.Data
-import com.kristiania.exam2021.DataList
+import com.kristiania.exam2021.dataclasses.Data
+import com.kristiania.exam2021.dataclasses.DataList
 import retrofit2.http.GET
 import retrofit2.http.Path
 

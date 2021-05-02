@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">exam2021</string>
+    <string name="buy">BUY</string>
+    <string name="sell">SELL</string>
 </resources>
