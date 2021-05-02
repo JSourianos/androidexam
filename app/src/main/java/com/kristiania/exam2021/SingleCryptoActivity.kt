@@ -1,5 +1,6 @@
 package com.kristiania.exam2021
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kristiania.exam2021.databinding.ActivitySingleCryptoBinding
@@ -24,5 +25,17 @@ class SingleCryptoActivity : AppCompatActivity() {
         //Add the intent values to our text views
         binding.cryptoName.text = cryptoName
         binding.cryptoValue.text = "$${cryptoValue.toString().toDouble()?.roundToLong().toString()}"
+
+        //Start buy activity
+        binding.buyButton.setOnClickListener {
+            val intent = Intent(it.context, BuyCryptoActivity::class.java)
+            it.context.startActivity(intent)
+        }
+
+        //Start sell activity
+        binding.sellButton.setOnClickListener {
+            val intent = Intent(it.context, SellCryptoActivity::class.java)
+            it.context.startActivity(intent)
+        }
     }
 }
