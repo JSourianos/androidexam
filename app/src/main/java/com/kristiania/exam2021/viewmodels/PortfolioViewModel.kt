@@ -17,8 +17,9 @@ class PortfolioViewModel(context: Context) : ViewModel() {
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
     private var userPoints: MutableLiveData<Double> =
         MutableLiveData()
-    private var ownedCryptoList: MutableLiveData<List<PurchasedCryptoEntity>> =
-        MutableLiveData<List<PurchasedCryptoEntity>>()
+    private var ownedCryptoList: MutableLiveData<List<CryptoDao.CryptoHolding>> =
+        MutableLiveData<List<CryptoDao.CryptoHolding>>()
+    private var transactionList = MutableLiveData<List<PurchasedCryptoEntity>>()
 
     init {
         var availableFunds: Double = 0.0
@@ -32,13 +33,19 @@ class PortfolioViewModel(context: Context) : ViewModel() {
 
             userPoints.postValue(availableFunds)
 
-            val listOfCryptos = cryptoDao.getOwnedCryptos()
+            val listOfCryptos = cryptoDao.getTotalCryptoHolding()
             ownedCryptoList.postValue(listOfCryptos)
+
+            transactionList.postValue(cryptoDao.getTransactionHistory())
         }
     }
 
-    fun getListOfCryptos(): MutableLiveData<List<PurchasedCryptoEntity>> {
+    fun getListOfCryptos(): MutableLiveData<List<CryptoDao.CryptoHolding>> {
         return ownedCryptoList
+    }
+
+    fun getListOfTransactions(): MutableLiveData<List<PurchasedCryptoEntity>> {
+        return transactionList
     }
 
     fun getUserPoints(): LiveData<Double> {

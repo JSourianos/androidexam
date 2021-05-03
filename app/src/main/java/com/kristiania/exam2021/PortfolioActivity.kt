@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kristiania.exam2021.adapters.PortfolioAdapter
+import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ActivityPortfolioBinding
 import com.kristiania.exam2021.viewmodels.PortfolioViewModel
@@ -23,7 +24,7 @@ class PortfolioActivity : AppCompatActivity() {
 
         viewModel = PortfolioViewModel(this) // initialize our view model
 
-        val ownedCryptoList = mutableListOf<PurchasedCryptoEntity>()
+        val ownedCryptoList = mutableListOf<CryptoDao.CryptoHolding>()
         val adapter = PortfolioAdapter(ownedCryptoList)
         binding.rvPortfolio.adapter = adapter
         binding.rvPortfolio.layoutManager = LinearLayoutManager(this)
@@ -37,7 +38,7 @@ class PortfolioActivity : AppCompatActivity() {
         viewModel.getListOfCryptos().observe(this){ownedCryptos ->
             ownedCryptos.map {
                 ownedCryptoList.add(it)
-                Log.d("OWNED CRYPTO: ", it.name)
+                Log.d("OWNED CRYPTO: ", it.cryptoName)
                 adapter.notifyDataSetChanged()
             }
             adapter.notifyDataSetChanged()

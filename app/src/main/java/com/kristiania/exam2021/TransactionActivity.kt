@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kristiania.exam2021.adapters.TransactionAdapter
+import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ActivityTransactionBinding
 import com.kristiania.exam2021.viewmodels.PortfolioViewModel
@@ -27,7 +28,7 @@ class TransactionActivity : AppCompatActivity() {
         binding.rvTransactions.adapter = adapter
         binding.rvTransactions.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getListOfCryptos().observe(this){ownedCryptos ->
+        viewModel.getListOfTransactions().observe(this){ownedCryptos ->
             ownedCryptos.map {
                 transactionList.add(it)
                 Log.d("transactions: ", it.name)

@@ -3,12 +3,13 @@ package com.kristiania.exam2021.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ItemCryptoBinding
 
 
 class PortfolioAdapter(
-    var ownedCryptos: List<PurchasedCryptoEntity>
+    var ownedCryptos: List<CryptoDao.CryptoHolding>
     ) : RecyclerView.Adapter<PortfolioAdapter.PortfolioViewHolder>() {
 
 
@@ -23,7 +24,7 @@ class PortfolioAdapter(
 
     override fun onBindViewHolder(holder: PortfolioViewHolder, position: Int) {
         holder.itemView.apply {
-            holder.binding.itemCrypto.text = ownedCryptos[position].name
+            holder.binding.itemCrypto.text = ownedCryptos[position].cryptoName
             holder.binding.cryptoPrice.text = ownedCryptos[position].amount.toString()
             holder.binding.cryptoPercent.text = "" // change this later?
         }

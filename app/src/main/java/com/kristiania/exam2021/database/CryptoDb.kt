@@ -30,7 +30,7 @@ data class PurchasedCryptoEntity(
 
 //Our db and its entities
 @Database(
-    entities = [WalletEntity::class, PurchasedCryptoEntity::class], version = 13, exportSchema = false
+    entities = [WalletEntity::class, PurchasedCryptoEntity::class], version = 14, exportSchema = false
 )
 
 abstract class CryptoDb : RoomDatabase() {
@@ -76,7 +76,15 @@ interface CryptoDao {
     fun addCrypto(purchasedCryptoEntity: PurchasedCryptoEntity)
 
     @Query("SELECT * FROM PurchasedCryptoEntity")
-    fun getOwnedCryptos(): List<PurchasedCryptoEntity>
+    fun getTransactionHistory(): List<PurchasedCryptoEntity>
+
+
+    data class CryptoHolding(
+        @ColumnInfo(name = "name") val cryptoName: String,
+        @ColumnInfo(name = "sum")val amount: Int
+    )
+    @Query("SELECT name, sum(amount) as sum FROM PurchasedCryptoEntity GROUP BY name")
+    fun getTotalCryptoHolding(): List<CryptoHolding>
 
     fun getTotalUserPoints(): Double{
         var userPoints = getUserPoints()
