@@ -19,9 +19,6 @@ class HomeViewModel(context: Context) : ViewModel() {
     //This is an instance of our service which fetches data from the crypto API
     private val cryptoService = API.cryptoService
 
-    //This will store one the crypto currencies
-    val singleCryptoCurrency = MutableLiveData<Data>()
-
     private val allCryptoCurrencies = MutableLiveData<DataList>()
     private val allImages = MutableLiveData<Unit>()
 
