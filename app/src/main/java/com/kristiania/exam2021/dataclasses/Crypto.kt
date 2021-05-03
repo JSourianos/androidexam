@@ -3,7 +3,6 @@ package com.kristiania.exam2021.dataclasses
 import com.squareup.moshi.JsonClass
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import kotlin.math.roundToInt
 
 @JsonClass(generateAdapter = true)
 data class Crypto(
@@ -21,7 +20,7 @@ data class Crypto(
     val explorer: String?
     ){
     init {
-
+        //Format the Crypto information to display numbers pretty
         val intPrice: Double? = priceUsd?.toDouble()
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
