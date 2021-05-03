@@ -12,5 +12,14 @@ class BuyCryptoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide() // hide nav
+
+        val startingIntent = intent
+        val cryptoName = startingIntent.getStringExtra("coinName")
+        val cryptoValue = startingIntent.getStringExtra("coinPrice")
+
+        binding.tvCryptoName.text = cryptoName
+        binding.tvCryptoPrice.text = cryptoValue
+
+        binding.buyTvCrypto.text = cryptoName
     }
 }
