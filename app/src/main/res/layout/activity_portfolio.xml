@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
-        android:text="PORTFOLIO"
+        android:text="MY PORTFOLIO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,5 +25,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/portfolioTv"
-        app:layout_constraintVertical_bias="0.366" />
+        app:layout_constraintVertical_bias="0.7" />
+
+    <TextView
+        android:id="@+id/portfolioPointsTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/transactionsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portfolioTv"
+        app:layout_constraintVertical_bias="0.233" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,23 +27,8 @@ class HomeViewModel(context: Context) : ViewModel() {
 
     //DATABASE
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
-    private var userPoints: MutableLiveData<Int> = MutableLiveData(10)//We have the userPoints as LiveData so we can observe them in our HomeActivity
-
-    //This entity represents the 10k which each user "get" when starting our application
-    //private var entity = WalletEntity(10000)
-
-    //This function adds the user points to the database when we launch the app
-    /*
-    private fun addUserPoints(entity: WalletEntity){
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                cryptoDao.insertUserPoints(entity)
-            }
-        }
-    }
-    */
-    //userPoints = result
-
+    private var userPoints: MutableLiveData<Int> =
+        MutableLiveData(10) //We have the userPoints as LiveData so we can observe them in our HomeActivity
 
     //This will run everytime we initialize the Home screen
     init {
@@ -51,14 +36,11 @@ class HomeViewModel(context: Context) : ViewModel() {
         //Use Dispatchers.IO to not block the main UI thread
         viewModelScope.launch(Dispatchers.IO) {
 
-            //This function adds 10k user points when we launch the app
-            //addUserPoints(entity)
-
             //This fetches the user points from the Db and adds it to our userPoints variable
             var result = cryptoDao.getUserPoints()
 
             //Add 10k to user
-            if(result.isEmpty()){
+            if (result.isEmpty()) {
                 var walletEntity: WalletEntity = WalletEntity(10000)
                 cryptoDao.addTransaction(walletEntity)
                 result = cryptoDao.getUserPoints()
@@ -80,7 +62,7 @@ class HomeViewModel(context: Context) : ViewModel() {
         return allCryptoCurrencies
     }
 
-    fun getUserPoints(): LiveData<Int>{
+    fun getUserPoints(): LiveData<Int> {
         return userPoints
     }
 
