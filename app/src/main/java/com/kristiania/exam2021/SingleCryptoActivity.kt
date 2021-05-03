@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kristiania.exam2021.databinding.ActivitySingleCryptoBinding
+import com.kristiania.exam2021.viewmodels.CryptoTransactionViewmodel
 import kotlin.math.roundToLong
 
 class SingleCryptoActivity : AppCompatActivity() {
@@ -25,6 +26,9 @@ class SingleCryptoActivity : AppCompatActivity() {
         //Add the intent values to our text views
         binding.cryptoName.text = cryptoName
         binding.cryptoValue.text = "$${cryptoValue.toString().toDouble()?.roundToLong().toString()}"
+
+        //Gets the amount the user has of this coin
+
 
         //Start buy activity
         binding.buyButton.setOnClickListener {

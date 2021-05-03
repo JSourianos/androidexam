@@ -44,6 +44,9 @@ class SellCryptoActivity : AppCompatActivity() {
 
         //How many of the crypto you own
         val currentlyOwnedAmount = transactionViewmodel.getTotalOwned(cryptoName!!)
+        currentlyOwnedAmount.observe(this){amount ->
+            binding.sellBtnCrypto.isEnabled = amount>0
+        }
         Toast.makeText(this, currentlyOwnedAmount.toString(), Toast.LENGTH_SHORT).show()
 
         binding.sellEtCrypto.addTextChangedListener {
