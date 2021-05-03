@@ -1,9 +1,7 @@
 package com.kristiania.exam2021.database
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import java.util.*
 
 
 //const val TABLE_NAME = "PurchasedCrypto"
@@ -76,6 +74,9 @@ interface CryptoDao {
 
     @Insert
     fun addCrypto(purchasedCryptoEntity: PurchasedCryptoEntity)
+
+    @Query("SELECT * FROM PurchasedCryptoEntity")
+    fun getOwnedCryptos(): List<PurchasedCryptoEntity>
 
     fun getTotalUserPoints(): Double{
         var userPoints = getUserPoints()
