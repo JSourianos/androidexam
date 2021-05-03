@@ -27,7 +27,7 @@ class SingleCryptoActivity : AppCompatActivity() {
 
         //Add the intent values to our text views
         binding.cryptoName.text = cryptoName
-        binding.cryptoValue.text = "$${cryptoValue.toString().toDouble()?.roundToLong().toString()}"
+        binding.cryptoValue.text = "$${cryptoValue}"
 
 
         //Gets the amount the user has of this coin

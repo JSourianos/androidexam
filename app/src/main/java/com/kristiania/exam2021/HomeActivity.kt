@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
 
         supportActionBar?.hide() //remove the navbar
 
-        viewModel = HomeViewModel(this)
+        viewModel = HomeViewModel(this) // init viewmodel
 
         //Our list of cryptos
         var cryptoList = mutableListOf<Crypto>()
@@ -37,6 +37,7 @@ class HomeActivity : AppCompatActivity() {
             binding.userPointsTv.text = "User Points: ${userPoints?.toString()}"
         }
 
+        //Show users portfolio
         binding.userPointsTv.setOnClickListener {
             val intent = Intent(it.context, PortfolioActivity::class.java)
             it.context.startActivity(intent)
