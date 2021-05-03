@@ -27,8 +27,13 @@ class SingleCryptoActivity : AppCompatActivity() {
         binding.cryptoName.text = cryptoName
         binding.cryptoValue.text = "$${cryptoValue.toString().toDouble()?.roundToLong().toString()}"
 
-        //Gets the amount the user has of this coin
 
+        //Gets the amount the user has of this coin
+        val viewmodel = CryptoTransactionViewmodel(this)
+        val totalAmount = viewmodel.getTotalOwned(cryptoName!!)
+        totalAmount.observe(this){amount ->
+            binding.sellButton.isEnabled = amount>0
+        }
 
         //Start buy activity
         binding.buyButton.setOnClickListener {
