@@ -13,7 +13,7 @@ import java.util.*
 @Entity
 data class WalletEntity(
     //we need: user points, list of cryptos currently being held, transactions
-    @ColumnInfo(name = "changed") var changed: Int,
+    @ColumnInfo(name = "changed") var changed: Double,
 ) {
     @PrimaryKey(autoGenerate = true)
     var priId: Int? = null
@@ -21,9 +21,9 @@ data class WalletEntity(
 
 @Entity
 data class PurchasedCryptoEntity(
-    @ColumnInfo(name = "id") var id: String,
+    @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "amount") var amount: Int,
-    @ColumnInfo(name = "price") var price: Int,
+    @ColumnInfo(name = "price") var price: Double,
     @ColumnInfo(name = "purchaseDate") var purchaseDate: String
 ){
     @PrimaryKey(autoGenerate = true)
@@ -32,7 +32,7 @@ data class PurchasedCryptoEntity(
 
 //Our db and its entities
 @Database(
-    entities = [WalletEntity::class, PurchasedCryptoEntity::class], version = 11, exportSchema = false
+    entities = [WalletEntity::class, PurchasedCryptoEntity::class], version = 13, exportSchema = false
 )
 
 abstract class CryptoDb : RoomDatabase() {
@@ -73,14 +73,23 @@ interface CryptoDao {
 
     @Insert
     fun addTransaction(walletEntity: WalletEntity)
-    /*
 
-    //Get list of crypto (we need to make a new data class for this)
-    @Query("SELECT cryptolist FROM CryptoEntity")
-    fun getCryptoList(): LiveData<String>
+    @Insert
+    fun addCrypto(purchasedCryptoEntity: PurchasedCryptoEntity)
 
-    //Get all previous transactions (need a data class for this as well)
-    @Query("SELECT transactions FROM CryptoEntity")
-    fun getTransactions(): LiveData<String>
-     */
+    fun getTotalUserPoints(): Double{
+        var userPoints = getUserPoints()
+        var sum: Double = 0.0
+        userPoints.map { userPoints ->
+            sum += userPoints.changed
+        }
+        return sum
+    }
+
+    fun addCryptoCurrency(purchasedCryptoEntity: PurchasedCryptoEntity){
+        var total = purchasedCryptoEntity.amount * purchasedCryptoEntity.price
+        var wallet: WalletEntity = WalletEntity(total * -1)
+        addTransaction(wallet)
+        addCrypto(purchasedCryptoEntity)
+    }
 }

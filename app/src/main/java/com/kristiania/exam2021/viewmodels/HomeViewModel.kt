@@ -24,12 +24,12 @@ class HomeViewModel(context: Context) : ViewModel() {
 
     //DATABASE
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
-    private var userPoints: MutableLiveData<Int> =
-        MutableLiveData(10) //We have the userPoints as LiveData so we can observe them in our HomeActivity
+    private var userPoints: MutableLiveData<Double> =
+        MutableLiveData(0.0) //We have the userPoints as LiveData so we can observe them in our HomeActivity
 
     //This will run everytime we initialize the Home screen
     init {
-        var availableFunds: Int = 0
+        var availableFunds: Double = 0.0
         //Use Dispatchers.IO to not block the main UI thread
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -38,7 +38,7 @@ class HomeViewModel(context: Context) : ViewModel() {
 
             //Add 10k to user if the user has no transactions
             if (result.isEmpty()) {
-                var walletEntity: WalletEntity = WalletEntity(10000)
+                var walletEntity: WalletEntity = WalletEntity(10000.0)
                 cryptoDao.addTransaction(walletEntity)
                 result = cryptoDao.getUserPoints()
             }
@@ -59,7 +59,7 @@ class HomeViewModel(context: Context) : ViewModel() {
         return allCryptoCurrencies
     }
 
-    fun getUserPoints(): LiveData<Int> {
+    fun getUserPoints(): LiveData<Double> {
         return userPoints
     }
 
