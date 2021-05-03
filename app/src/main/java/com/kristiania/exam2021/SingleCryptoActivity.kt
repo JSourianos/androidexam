@@ -37,6 +37,8 @@ class SingleCryptoActivity : AppCompatActivity() {
         //Start sell activity
         binding.sellButton.setOnClickListener {
             val intent = Intent(it.context, SellCryptoActivity::class.java)
+            intent.putExtra("coinName", cryptoName)
+            intent.putExtra("coinPrice", cryptoValue)
             it.context.startActivity(intent)
         }
     }

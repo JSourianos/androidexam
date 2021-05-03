@@ -1,7 +1,6 @@
 package com.kristiania.exam2021.viewmodels
 
 import android.content.Context
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kristiania.exam2021.database.CryptoDao
