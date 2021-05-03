@@ -11,11 +11,12 @@ import kotlin.math.roundToLong
 
 //Adapter for our RecyclerView
 class CryptoAdapter(
-        var cryptos: List<Crypto>
+    var cryptos: List<Crypto>
 ) : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
 
 
-    inner class CryptoViewHolder(val binding: ItemCryptoBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class CryptoViewHolder(val binding: ItemCryptoBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptoViewHolder {
         val binding = ItemCryptoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,7 +26,8 @@ class CryptoAdapter(
     override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
         holder.itemView.apply {
             holder.binding.itemCrypto.text = cryptos[position].name //This is the name of the crypto
-            holder.binding.cryptoPrice.text = cryptos[position].priceUsd?.toDouble()?.roundToLong().toString() //This is its price in USD (without decimals)
+            holder.binding.cryptoPrice.text = cryptos[position].priceUsd?.toDouble()?.roundToLong()
+                .toString() //This is its price in USD (without decimals)
 
             //Change color of percentage if its less than 0, meaning we have negative returns
             if (cryptos[position].changePercent24Hr?.toDouble()!! < 0) {
@@ -33,7 +35,9 @@ class CryptoAdapter(
             } else {
                 holder.binding.cryptoPercent.setTextColor(resources.getColor(R.color.green))
             }
-            holder.binding.cryptoPercent.text = "${cryptos[position].changePercent24Hr?.toDouble()?.let { it.roundToInt().toString() }}%" //This is the percentage
+            holder.binding.cryptoPercent.text = "${
+                cryptos[position].changePercent24Hr?.toDouble()?.let { it.roundToInt().toString() }
+            }%" //This is the percentage
         }
 
         //This launches the new screen with the single crypto which you clicked on
@@ -48,6 +52,7 @@ class CryptoAdapter(
             it.context.startActivity(intent)
         }
     }
+
     override fun getItemCount(): Int {
         return cryptos.size
     }

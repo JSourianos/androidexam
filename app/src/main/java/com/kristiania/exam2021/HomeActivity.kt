@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
         val adapter = CryptoAdapter(cryptoList)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        
+
         viewModel.getUserPoints().observe(this) { userPoints ->
             binding.userPointsTv.text = "User Points: ${userPoints?.toString()}"
         }
@@ -39,8 +39,9 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(it.context, PortfolioActivity::class.java)
             it.context.startActivity(intent)
         }
+
         //This shows all cryptocurrencies
-        viewModel.getAllCryptos().observe(this){ crypto ->
+        viewModel.getAllCryptos().observe(this) { crypto ->
             crypto.data.map {
                 cryptoList.add(it)
                 Log.d("Crypto being mapped: ", it.name!!)
