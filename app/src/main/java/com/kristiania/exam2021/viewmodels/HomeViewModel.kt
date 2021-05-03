@@ -70,10 +70,6 @@ class HomeViewModel(context: Context) : ViewModel() {
 
             userPoints.postValue(availableFunds)
 
-            //Get a single crypto
-            val cryptos = cryptoService.getCryptoCurrency("bitcoin")
-            singleCryptoCurrency.postValue(cryptos)
-
             //Get all cryptos
             val allCryptos = cryptoService.getAllCryptoCurrencies()
             allCryptoCurrencies.postValue(allCryptos)
