@@ -18,4 +18,8 @@ interface CryptoService {
     //Get image resource
     @GET("https://static.coincap.io/assets/icons/{symbol}@2x.png")
     suspend fun getImage(@Path("symbol") symbol: String)
+
+    //Get graph
+    @GET("v2/assets/{symbol}/history?interval=d1")
+    suspend fun getGraph(@Path("symbol") symbol: String)
 }

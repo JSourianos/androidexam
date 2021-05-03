@@ -27,7 +27,7 @@ class CryptoAdapter(
     override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
         holder.itemView.apply {
             holder.binding.itemCrypto.text = cryptos[position].name //This is the name of the crypto
-            holder.binding.cryptoPrice.text = cryptos[position].priceUsd?.toDouble()?.roundToLong()
+            holder.binding.cryptoPrice.text = cryptos[position].priceUsd
                 .toString() //This is its price in USD (without decimals)
 
             //Change color of percentage if its less than 0, meaning we have negative returns
