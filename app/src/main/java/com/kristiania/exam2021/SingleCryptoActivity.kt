@@ -10,6 +10,8 @@ import kotlin.math.roundToLong
 class SingleCryptoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySingleCryptoBinding
+    private lateinit var viewmodel: CryptoTransactionViewmodel
+    private var cryptoName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +22,7 @@ class SingleCryptoActivity : AppCompatActivity() {
 
         //Intent from the recyclerView at our beginning screen
         val startingIntent = intent
-        val cryptoName = startingIntent.getStringExtra("cryptoName")
+        cryptoName = startingIntent.getStringExtra("cryptoName")
         val cryptoValue = startingIntent.getStringExtra("cryptoValue")
 
         //Add the intent values to our text views
@@ -29,7 +31,7 @@ class SingleCryptoActivity : AppCompatActivity() {
 
 
         //Gets the amount the user has of this coin
-        val viewmodel = CryptoTransactionViewmodel(this)
+        viewmodel = CryptoTransactionViewmodel(this)
         val totalAmount = viewmodel.getTotalOwned(cryptoName!!)
         totalAmount.observe(this){amount ->
             binding.sellButton.isEnabled = amount>0
@@ -50,5 +52,10 @@ class SingleCryptoActivity : AppCompatActivity() {
             intent.putExtra("coinPrice", cryptoValue)
             it.context.startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewmodel.getTotalOwned(cryptoName!!)
     }
 }

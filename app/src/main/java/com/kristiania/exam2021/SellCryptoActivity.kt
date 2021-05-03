@@ -43,7 +43,7 @@ class SellCryptoActivity : AppCompatActivity() {
         binding.sellBtnCrypto.isEnabled = false
 
         //How many of the crypto you own
-        val currentlyOwnedAmount = transactionViewmodel.getTotalByCrypto(cryptoName!!)
+        val currentlyOwnedAmount = transactionViewmodel.getTotalOwned(cryptoName!!)
         currentlyOwnedAmount.observe(this){amount ->
             binding.sellBtnCrypto.isEnabled = amount>0
         }
