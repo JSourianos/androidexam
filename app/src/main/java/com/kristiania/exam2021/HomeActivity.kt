@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
+        //Display amount of user points the user has
         viewModel.getUserPoints().observe(this) { userPoints ->
             binding.userPointsTv.text = "User Points: ${userPoints?.toString()}"
         }
@@ -50,5 +51,10 @@ class HomeActivity : AppCompatActivity() {
             }
             adapter.notifyDataSetChanged()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getUpdatedUserPoints()
     }
 }
