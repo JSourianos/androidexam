@@ -3,6 +3,7 @@ package com.kristiania.exam2021
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.kristiania.exam2021.databinding.ActivityPortfolioBinding
 import com.kristiania.exam2021.viewmodels.PortfolioViewModel
 
@@ -22,6 +23,13 @@ class PortfolioActivity : AppCompatActivity() {
         //Add user points to portfolio
         viewModel.getUserPoints().observe(this){ userPoints ->
             binding.portfolioPointsTv.text = "${userPoints?.toString()} USD"
+        }
+
+        //Observe on a viewmodel function that returns a list
+        viewModel.getListOfCryptos().observe(this){ownedCryptos ->
+            ownedCryptos.map {
+                Log.d("Owned Cryptos: ", it.name)
+            }
         }
 
         //Move to transaction history
