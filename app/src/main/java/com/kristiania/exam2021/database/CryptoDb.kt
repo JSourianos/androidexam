@@ -75,7 +75,7 @@ interface CryptoDao {
     @Insert
     fun addCrypto(purchasedCryptoEntity: PurchasedCryptoEntity)
 
-    @Query("SELECT * FROM PurchasedCryptoEntity")
+    @Query("SELECT * FROM PurchasedCryptoEntity ORDER BY priId DESC")
     fun getTransactionHistory(): List<PurchasedCryptoEntity>
 
 
@@ -83,7 +83,7 @@ interface CryptoDao {
         @ColumnInfo(name = "name") val cryptoName: String,
         @ColumnInfo(name = "sum")val amount: Int
     )
-    @Query("SELECT name, sum(amount) as sum FROM PurchasedCryptoEntity GROUP BY name HAVING sum > 0")
+    @Query("SELECT name, sum(amount) as sum FROM PurchasedCryptoEntity GROUP BY name HAVING sum > 0 ORDER BY sum DESC")
     fun getTotalCryptoHolding(): List<CryptoHolding>
 
     fun getTotalUserPoints(): Double{
