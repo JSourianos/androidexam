@@ -87,7 +87,7 @@ interface CryptoDao {
         return sum
     }
 
-    fun addCryptoCurrency(purchasedCryptoEntity: PurchasedCryptoEntity){
+    fun addCryptoTransaction(purchasedCryptoEntity: PurchasedCryptoEntity){
         var total = purchasedCryptoEntity.amount * purchasedCryptoEntity.price
         var wallet = WalletEntity(total * -1)
         addTransaction(wallet)

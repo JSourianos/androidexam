@@ -1,9 +1,7 @@
 package com.kristiania.exam2021.viewmodels
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kristiania.exam2021.database.CryptoDao
@@ -11,7 +9,6 @@ import com.kristiania.exam2021.database.CryptoDb
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.math.ceil
 
 class CryptoTransactionViewmodel(context: Context) : ViewModel() {
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
@@ -24,9 +21,9 @@ class CryptoTransactionViewmodel(context: Context) : ViewModel() {
         }
     }
 
-    fun addPurchasedCrypto(purchasedCryptoEntity: PurchasedCryptoEntity){
+    fun addCryptoTransaction(purchasedCryptoEntity: PurchasedCryptoEntity){
         viewModelScope.launch(Dispatchers.IO){
-            cryptoDao.addCryptoCurrency(purchasedCryptoEntity)
+            cryptoDao.addCryptoTransaction(purchasedCryptoEntity)
         }
     }
 

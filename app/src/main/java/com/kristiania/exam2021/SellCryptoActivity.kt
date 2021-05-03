@@ -1,18 +1,22 @@
 package com.kristiania.exam2021
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
-import com.kristiania.exam2021.R
+import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ActivitySellCryptoBinding
 import com.kristiania.exam2021.viewmodels.CryptoTransactionViewmodel
+import java.time.LocalDateTime
 
 class SellCryptoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySellCryptoBinding
     private lateinit var transactionViewmodel: CryptoTransactionViewmodel
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySellCryptoBinding.inflate(layoutInflater)
@@ -52,7 +56,10 @@ class SellCryptoActivity : AppCompatActivity() {
         }
 
         binding.sellBtnCrypto.setOnClickListener {
-            //TODO
+            val date: LocalDateTime = LocalDateTime.now()
+            val sellAmount = binding.sellEtCrypto.text.toString().toInt()
+            val purchasedCryptoEntity = PurchasedCryptoEntity(cryptoName!!, sellAmount*-1, cryptoValue!!.toDouble(), date.toString())
+            transactionViewmodel.addCryptoTransaction(purchasedCryptoEntity)
         }
     }
 }

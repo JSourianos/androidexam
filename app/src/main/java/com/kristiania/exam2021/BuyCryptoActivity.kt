@@ -58,7 +58,7 @@ class BuyCryptoActivity : AppCompatActivity() {
 
             if(userPoints > (purchaseAmount * cryptoValue!!.toDouble())){
                 val purchasedCryptoEntity = PurchasedCryptoEntity(cryptoName!!, purchaseAmount, cryptoValue!!.toDouble(), date.toString())
-                transactionViewmodel.addPurchasedCrypto(purchasedCryptoEntity)
+                transactionViewmodel.addCryptoTransaction(purchasedCryptoEntity)
 
                 Toast.makeText(this, "You have purchased $purchaseAmount $cryptoName for $cryptoValue", Toast.LENGTH_SHORT).show() //display success toast
                 binding.buyEtCrypto.text = null //reset input field
