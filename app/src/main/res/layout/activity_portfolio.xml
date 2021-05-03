@@ -20,22 +20,30 @@
         android:id="@+id/transactionsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
         android:text="Transactions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/portfolioTv"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/portfolioPointsTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/transactionsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/portfolioTv"
-        app:layout_constraintVertical_bias="0.233" />
+        app:layout_constraintTop_toBottomOf="@+id/portfolioTv" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPortfolio"
+        android:layout_width="285dp"
+        android:layout_height="364dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/transactionsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portfolioPointsTv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

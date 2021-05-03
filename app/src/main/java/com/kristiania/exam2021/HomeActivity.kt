@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kristiania.exam2021.adapters.CryptoAdapter
 import com.kristiania.exam2021.databinding.ActivityHomeBinding
 import com.kristiania.exam2021.dataclasses.Crypto
 import com.kristiania.exam2021.viewmodels.HomeViewModel
