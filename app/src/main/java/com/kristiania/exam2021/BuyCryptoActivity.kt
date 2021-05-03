@@ -67,7 +67,10 @@ class BuyCryptoActivity : AppCompatActivity() {
                 binding.buyEtCrypto.text = null //reset input field
                 binding.buyEtCrypto.clearFocus() // clear focus
                 it.hideKeyboard() // hide keyboard
+            } else {
+                Toast.makeText(this, "You dont have sufficient funds", Toast.LENGTH_SHORT).show() //display error toast
             }
+
         }
     }
 }
