@@ -36,7 +36,7 @@ class CryptoAdapter(
                 holder.binding.cryptoPercent.setTextColor(resources.getColor(R.color.green))
             }
             holder.binding.cryptoPercent.text = "${
-                cryptos[position].changePercent24Hr?.toDouble()?.let { it.roundToInt().toString() }
+                cryptos[position].changePercent24Hr
             }%" //This is the percentage
         }
 

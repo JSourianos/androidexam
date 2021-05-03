@@ -21,5 +21,7 @@ class BuyCryptoActivity : AppCompatActivity() {
         binding.tvCryptoPrice.text = cryptoValue
 
         binding.buyTvCrypto.text = cryptoName
+        binding.buyEtUsd.isEnabled = false
+        binding.buyEtUsd.setText(cryptoValue)
     }
 }

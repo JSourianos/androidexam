@@ -36,7 +36,7 @@ class HomeViewModel(context: Context) : ViewModel() {
             //This fetches the user points from the Db and adds it to our userPoints variable
             var result = cryptoDao.getUserPoints()
 
-            //Add 10k to user
+            //Add 10k to user if the user has no transactions
             if (result.isEmpty()) {
                 var walletEntity: WalletEntity = WalletEntity(10000)
                 cryptoDao.addTransaction(walletEntity)

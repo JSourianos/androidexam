@@ -1,6 +1,9 @@
 package com.kristiania.exam2021.dataclasses
 
 import com.squareup.moshi.JsonClass
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
 @JsonClass(generateAdapter = true)
 data class Crypto(
@@ -12,8 +15,19 @@ data class Crypto(
     val maxSupply: String?,
     val marketCapUsd: String?,
     val volumeUsd24Hr: String?,
-    val priceUsd: String?,
-    val changePercent24Hr: String?,
+    var priceUsd: String?,
+    var changePercent24Hr: String?,
     val vwap24Hr: String?,
     val explorer: String?
-    )
+    ){
+    init {
+
+        val intPrice: Double? = priceUsd?.toDouble()
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        this.priceUsd = df.format(intPrice).toString()
+
+        val intChangePercent = this.changePercent24Hr?.toDouble()
+        this.changePercent24Hr = df.format(intChangePercent)
+    }
+}
