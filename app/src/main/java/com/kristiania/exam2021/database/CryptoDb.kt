@@ -83,7 +83,7 @@ interface CryptoDao {
         @ColumnInfo(name = "name") val cryptoName: String,
         @ColumnInfo(name = "sum")val amount: Int
     )
-    @Query("SELECT name, sum(amount) as sum FROM PurchasedCryptoEntity GROUP BY name")
+    @Query("SELECT name, sum(amount) as sum FROM PurchasedCryptoEntity GROUP BY name HAVING sum > 0")
     fun getTotalCryptoHolding(): List<CryptoHolding>
 
     fun getTotalUserPoints(): Double{
