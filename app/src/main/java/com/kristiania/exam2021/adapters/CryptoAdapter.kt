@@ -1,13 +1,18 @@
 package com.kristiania.exam2021.adapters
 
 import android.content.Intent
+import android.graphics.Color
+import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import com.kristiania.exam2021.R
 import com.kristiania.exam2021.SingleCryptoActivity
+import com.kristiania.exam2021.api.CryptoService
 import com.kristiania.exam2021.databinding.ItemCryptoBinding
 import com.kristiania.exam2021.dataclasses.Crypto
+import com.squareup.picasso.Picasso
 import kotlin.math.roundToLong
 
 //Adapter for our RecyclerView
@@ -17,7 +22,35 @@ class CryptoAdapter(
 
 
     inner class CryptoViewHolder(val binding: ItemCryptoBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root) {
+            fun bind(cryptos: Crypto){
+                binding.itemCrypto.text = cryptos.name //This is the name of the crypto
+                binding.cryptoPrice.text = "${cryptos.priceUsd.toString()}$" //This is its price in USD (without decimals)
+                binding.cryptoPercent.text = "${cryptos.changePercent24Hr}%"
+
+                //Fetch image resource
+                Picasso.get().load("https://static.coincap.io/assets/icons/${cryptos.symbol?.toLowerCase()}@2x.png").into(binding.cryptoImage)
+
+                //This launches the new screen with the single crypto which you clicked on
+                itemView.setOnClickListener {
+                    val currentCryptoName = cryptos.name
+                    val currentCryptoValue = cryptos.priceUsd
+                    //We need to fetch the image from here aswell
+
+                    val intent = Intent(it.context, SingleCryptoActivity::class.java)
+                    intent.putExtra("cryptoName", currentCryptoName)
+                    intent.putExtra("cryptoValue", currentCryptoValue)
+                    it.context.startActivity(intent)
+                }
+
+                if (cryptos.changePercent24Hr?.toDouble()!! < 0) {
+                    binding.cryptoPercent.setTextColor(Color.parseColor("#FF0000"))
+                } else {
+                    binding.cryptoPercent.setTextColor(Color.parseColor("#00FF00"))
+                }
+
+            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptoViewHolder {
         val binding = ItemCryptoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,33 +58,7 @@ class CryptoAdapter(
     }
 
     override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
-        holder.itemView.apply {
-            holder.binding.itemCrypto.text = cryptos[position].name //This is the name of the crypto
-            holder.binding.cryptoPrice.text = cryptos[position].priceUsd
-                .toString() //This is its price in USD (without decimals)
-
-            //Change color of percentage if its less than 0, meaning we have negative returns
-            if (cryptos[position].changePercent24Hr?.toDouble()!! < 0) {
-                holder.binding.cryptoPercent.setTextColor(resources.getColor(R.color.red))
-            } else {
-                holder.binding.cryptoPercent.setTextColor(resources.getColor(R.color.green))
-            }
-            holder.binding.cryptoPercent.text = "${
-                cryptos[position].changePercent24Hr
-            }%" //This is the percentage
-        }
-
-        //This launches the new screen with the single crypto which you clicked on
-        holder.itemView.setOnClickListener {
-            val currentCryptoName = cryptos[position].name
-            val currentCryptoValue = cryptos[position].priceUsd
-            //We need to fetch the image from here aswell
-
-            val intent = Intent(it.context, SingleCryptoActivity::class.java)
-            intent.putExtra("cryptoName", currentCryptoName)
-            intent.putExtra("cryptoValue", currentCryptoValue)
-            it.context.startActivity(intent)
-        }
+        holder.bind(cryptos[position]) //Using the bind method above
     }
 
     override fun getItemCount(): Int {
