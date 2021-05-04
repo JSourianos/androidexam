@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="TRANSACTIONS"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +20,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTransactions"
-        android:layout_width="280dp"
-        android:layout_height="590dp"
+        android:layout_width="388dp"
+        android:layout_height="585dp"
         android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

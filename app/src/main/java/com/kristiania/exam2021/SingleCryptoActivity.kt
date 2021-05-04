@@ -16,7 +16,7 @@ class SingleCryptoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySingleCryptoBinding
     private lateinit var viewmodel: CryptoTransactionViewmodel
-    private var cryptoName: String? = null
+    private var cryptoName: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,14 +41,15 @@ class SingleCryptoActivity : AppCompatActivity() {
 
         /*
         //Chart
-        viewmodel.getChart(cryptoName!!.toLowerCase())
+        viewmodel.getChart("bitcoin")
         val series = viewmodel.getChartSeries()
-        val cartesian: Cartesian = AnyChart.column()
-        cartesian.column(series)
+        val cartesian: Cartesian = AnyChart.line()
+        cartesian.line(series)
         binding.coinChart.setChart(cartesian)
 
 
          */
+
         //Gets the amount the user has of this coin
         val totalAmount = viewmodel.getTotalOwned(cryptoName!!)
         totalAmount.observe(this){amount ->
@@ -77,9 +78,5 @@ class SingleCryptoActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewmodel.getTotalOwned(cryptoName!!)
-    }
-
-    private fun drawGraph(){
-
     }
 }

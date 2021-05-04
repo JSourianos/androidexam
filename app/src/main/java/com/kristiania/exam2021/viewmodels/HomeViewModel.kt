@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.anychart.AnyChart
+import com.anychart.charts.Cartesian
 import com.kristiania.exam2021.dataclasses.Data
 import com.kristiania.exam2021.dataclasses.DataList
 import com.kristiania.exam2021.api.API
@@ -52,6 +54,7 @@ class HomeViewModel(context: Context) : ViewModel() {
             //Get all cryptos
             val allCryptos = cryptoService.getAllCryptoCurrencies()
             allCryptoCurrencies.postValue(allCryptos)
+
         }
     }
 

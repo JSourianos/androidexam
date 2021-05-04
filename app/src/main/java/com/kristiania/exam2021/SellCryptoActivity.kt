@@ -80,7 +80,8 @@ class SellCryptoActivity : AppCompatActivity() {
                 cryptoName!!,
                 sellAmount * -1,
                 cryptoValue!!.toDouble(),
-                date.toString()
+                date.toString(),
+                cryptoSymbol!!.toLowerCase()
             )
             transactionViewmodel.addCryptoTransaction(purchasedCryptoEntity)
 

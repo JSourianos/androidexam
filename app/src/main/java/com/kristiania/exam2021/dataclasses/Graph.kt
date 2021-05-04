@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Graph(
-    val priceUsd: String?,
+    var priceUsd: String?,
     var time: Double?,
-    val date: String?
+    var date: String?
 )

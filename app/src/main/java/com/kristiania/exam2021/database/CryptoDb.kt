@@ -4,10 +4,7 @@ import android.content.Context
 import androidx.room.*
 
 
-//const val TABLE_NAME = "PurchasedCrypto"
-
 //This is an entity inside the database.
-
 @Entity
 data class WalletEntity(
     //we need: user points, list of cryptos currently being held, transactions
@@ -22,15 +19,18 @@ data class PurchasedCryptoEntity(
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "amount") var amount: Int,
     @ColumnInfo(name = "price") var price: Double,
-    @ColumnInfo(name = "purchaseDate") var purchaseDate: String
-){
+    @ColumnInfo(name = "purchaseDate") var purchaseDate: String,
+    @ColumnInfo(name = "symbol") var symbol: String
+) {
     @PrimaryKey(autoGenerate = true)
     var priId: Int? = null
 }
 
 //Our db and its entities
 @Database(
-    entities = [WalletEntity::class, PurchasedCryptoEntity::class], version = 14, exportSchema = false
+    entities = [WalletEntity::class, PurchasedCryptoEntity::class],
+    version = 15,
+    exportSchema = false
 )
 
 abstract class CryptoDb : RoomDatabase() {
@@ -81,12 +81,14 @@ interface CryptoDao {
 
     data class CryptoHolding(
         @ColumnInfo(name = "name") val cryptoName: String,
-        @ColumnInfo(name = "sum")val amount: Int
+        @ColumnInfo(name = "symbol") val symbol: String,
+        @ColumnInfo(name = "sum") val amount: Int
     )
-    @Query("SELECT name, sum(amount) as sum FROM PurchasedCryptoEntity GROUP BY name HAVING sum > 0 ORDER BY sum DESC")
+
+    @Query("SELECT name, symbol, sum(amount) as sum FROM PurchasedCryptoEntity GROUP BY name HAVING sum > 0 ORDER BY sum DESC")
     fun getTotalCryptoHolding(): List<CryptoHolding>
 
-    fun getTotalUserPoints(): Double{
+    fun getTotalUserPoints(): Double {
         var userPoints = getUserPoints()
         var sum: Double = 0.0
         userPoints.map { userPoints ->
@@ -95,7 +97,7 @@ interface CryptoDao {
         return sum
     }
 
-    fun addCryptoTransaction(purchasedCryptoEntity: PurchasedCryptoEntity){
+    fun addCryptoTransaction(purchasedCryptoEntity: PurchasedCryptoEntity) {
         var total = purchasedCryptoEntity.amount * purchasedCryptoEntity.price
         var wallet = WalletEntity(total * -1)
         addTransaction(wallet)

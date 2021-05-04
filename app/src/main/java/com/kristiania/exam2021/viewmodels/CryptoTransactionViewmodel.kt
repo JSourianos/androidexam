@@ -13,6 +13,7 @@ import com.kristiania.exam2021.database.CryptoDb
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 class CryptoTransactionViewmodel(context: Context) : ViewModel() {
     private val cryptoService = API.cryptoService
@@ -51,13 +52,13 @@ class CryptoTransactionViewmodel(context: Context) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO){
             val dataPoints = cryptoService.getGraph(coinSymbol)
             dataPoints.data.map {  dataPoint ->
-                series.add(ValueDataEntry(dataPoint.time.toString().toInt(), dataPoint.priceUsd?.toInt()))
+                series.add(ValueDataEntry("why", 10))
             }
         }
     }
 
-     */
 
+     */
     fun getUserPoints(): Double {
         return userPoints
     }

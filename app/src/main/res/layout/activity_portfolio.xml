@@ -10,8 +10,9 @@
         android:id="@+id/portfolioTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="32dp"
         android:text="MY PORTFOLIO"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,11 +40,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPortfolio"
-        android:layout_width="285dp"
-        android:layout_height="364dp"
+        android:layout_width="377dp"
+        android:layout_height="454dp"
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toTopOf="@+id/transactionsButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/portfolioPointsTv" />
+        app:layout_constraintTop_toBottomOf="@+id/portfolioPointsTv"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

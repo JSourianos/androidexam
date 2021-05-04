@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/itemCrypto"
-        android:layout_width="122dp"
-        android:layout_height="40dp"
+        android:layout_width="121dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:text="Cryptoname"
         android:textSize="16sp"
@@ -29,7 +29,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/cryptoImage"
         app:layout_constraintTop_toBottomOf="@+id/itemCrypto"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/cryptoPercent"
