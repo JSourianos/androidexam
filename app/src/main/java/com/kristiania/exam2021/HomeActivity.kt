@@ -9,6 +9,7 @@ import com.kristiania.exam2021.adapters.CryptoAdapter
 import com.kristiania.exam2021.databinding.ActivityHomeBinding
 import com.kristiania.exam2021.dataclasses.Crypto
 import com.kristiania.exam2021.viewmodels.HomeViewModel
+import java.text.DecimalFormat
 
 class HomeActivity : AppCompatActivity() {
 
@@ -34,7 +35,8 @@ class HomeActivity : AppCompatActivity() {
 
         //Display amount of user points the user has
         viewModel.getUserPoints().observe(this) { userPoints ->
-            binding.userPointsTv.text = "User Points: ${userPoints?.toString()}"
+            val df = DecimalFormat("#.##") // need to format the number so it doesnt have a million decimals
+            binding.userPointsTv.text = "Current Balance: ${df.format(userPoints)}$"
         }
 
         //Show users portfolio

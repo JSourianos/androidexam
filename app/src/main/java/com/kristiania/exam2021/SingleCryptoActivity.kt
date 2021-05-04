@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kristiania.exam2021.databinding.ActivitySingleCryptoBinding
 import com.kristiania.exam2021.viewmodels.CryptoTransactionViewmodel
+import com.squareup.picasso.Picasso
 import kotlin.math.roundToLong
 
 class SingleCryptoActivity : AppCompatActivity() {
@@ -24,11 +25,14 @@ class SingleCryptoActivity : AppCompatActivity() {
         val startingIntent = intent
         cryptoName = startingIntent.getStringExtra("cryptoName")
         val cryptoValue = startingIntent.getStringExtra("cryptoValue")
+        val cryptoSymbol = startingIntent.getStringExtra("cryptoSymbol")
 
         //Add the intent values to our text views
         binding.cryptoName.text = cryptoName
         binding.cryptoValue.text = "$${cryptoValue}"
 
+        //Load image resource
+        Picasso.get().load("https://static.coincap.io/assets/icons/${cryptoSymbol}@2x.png").into(binding.singleCryptoImage)
 
         //Gets the amount the user has of this coin
         viewmodel = CryptoTransactionViewmodel(this)

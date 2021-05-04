@@ -35,11 +35,12 @@ class CryptoAdapter(
                 itemView.setOnClickListener {
                     val currentCryptoName = cryptos.name
                     val currentCryptoValue = cryptos.priceUsd
-                    //We need to fetch the image from here aswell
+                    val currentCryptoSymbol = cryptos.symbol?.toLowerCase()
 
                     val intent = Intent(it.context, SingleCryptoActivity::class.java)
                     intent.putExtra("cryptoName", currentCryptoName)
                     intent.putExtra("cryptoValue", currentCryptoValue)
+                    intent.putExtra("cryptoSymbol", currentCryptoSymbol)
                     it.context.startActivity(intent)
                 }
 
