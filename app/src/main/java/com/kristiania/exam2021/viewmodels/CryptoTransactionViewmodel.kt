@@ -22,12 +22,6 @@ class CryptoTransactionViewmodel(context: Context) : ViewModel() {
         }
     }
 
-    fun fetchGraph(){
-        viewModelScope.launch(Dispatchers.IO) {
-
-        }
-    }
-
     fun addCryptoTransaction(purchasedCryptoEntity: PurchasedCryptoEntity){
         viewModelScope.launch(Dispatchers.IO){
             cryptoDao.addCryptoTransaction(purchasedCryptoEntity)

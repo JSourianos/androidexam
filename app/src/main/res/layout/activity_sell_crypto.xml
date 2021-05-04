@@ -87,4 +87,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCryptoName" />
 
+    <ImageView
+        android:id="@+id/selImageView"
+        android:layout_width="97dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/sellTvUsd"
+        app:layout_constraintEnd_toStartOf="@+id/tvCryptoName"
+        app:layout_constraintHorizontal_bias="0.188"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.333"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

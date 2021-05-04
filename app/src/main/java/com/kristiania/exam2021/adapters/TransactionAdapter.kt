@@ -1,5 +1,6 @@
 package com.kristiania.exam2021.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,11 @@ class TransactionAdapter(
                 binding.itemCrypto.text = transactions.name
                 binding.cryptoPrice.text = transactions.purchaseDate
                 binding.cryptoPercent.text = transactions.amount.toString()
+
+                //Change color based if we sold
+                if(transactions.amount.toString().startsWith("-")){
+                    binding.cryptoPercent.setTextColor(Color.parseColor("#FF0000"))
+                }
 
                 //Fetch image resource
                 Picasso.get().load("https://static.coincap.io/assets/icons/${"btc"}@2x.png").into(binding.cryptoImage)

@@ -46,6 +46,7 @@ class SingleCryptoActivity : AppCompatActivity() {
             val intent = Intent(it.context, BuyCryptoActivity::class.java)
             intent.putExtra("coinName", cryptoName)
             intent.putExtra("coinPrice", cryptoValue)
+            intent.putExtra("coinSymbol", cryptoSymbol)
             it.context.startActivity(intent)
         }
 
@@ -54,6 +55,7 @@ class SingleCryptoActivity : AppCompatActivity() {
             val intent = Intent(it.context, SellCryptoActivity::class.java)
             intent.putExtra("coinName", cryptoName)
             intent.putExtra("coinPrice", cryptoValue)
+            intent.putExtra("coinSymbol", cryptoSymbol)
             it.context.startActivity(intent)
         }
     }

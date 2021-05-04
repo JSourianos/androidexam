@@ -12,6 +12,7 @@ import androidx.core.widget.addTextChangedListener
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ActivitySellCryptoBinding
 import com.kristiania.exam2021.viewmodels.CryptoTransactionViewmodel
+import com.squareup.picasso.Picasso
 import java.time.LocalDateTime
 
 class SellCryptoActivity : AppCompatActivity() {
@@ -32,10 +33,13 @@ class SellCryptoActivity : AppCompatActivity() {
         val startingIntent = intent
         val cryptoName = startingIntent.getStringExtra("coinName")
         val cryptoValue = startingIntent.getStringExtra("coinPrice")
+        val cryptoSymbol = startingIntent.getStringExtra("coinSymbol")
 
         //Top bar showing crypto name and price
         binding.tvCryptoName.text = cryptoName
         binding.tvCryptoPrice.text = cryptoValue
+        Picasso.get().load("https://static.coincap.io/assets/icons/${cryptoSymbol}@2x.png").into(binding.selImageView)
+
 
         //Input fields
         binding.sellTvCrypto.text = cryptoName
