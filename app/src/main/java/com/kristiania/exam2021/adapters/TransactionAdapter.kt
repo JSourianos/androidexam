@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ItemCryptoBinding
+import com.squareup.picasso.Picasso
 
 class TransactionAdapter(
     var transactions: MutableList<PurchasedCryptoEntity>
@@ -13,7 +14,16 @@ class TransactionAdapter(
 
 
     inner class TransactionViewHolder(val binding: ItemCryptoBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root){
+            fun bind(transactions: PurchasedCryptoEntity){
+                binding.itemCrypto.text = transactions.name
+                binding.cryptoPrice.text = transactions.purchaseDate
+                binding.cryptoPercent.text = transactions.amount.toString()
+
+                //Fetch image resource
+                Picasso.get().load("https://static.coincap.io/assets/icons/${"btc"}@2x.png").into(binding.cryptoImage)
+            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val binding =
@@ -22,11 +32,7 @@ class TransactionAdapter(
     }
 
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
-        holder.itemView.apply {
-            holder.binding.itemCrypto.text = transactions[position].name
-            holder.binding.cryptoPrice.text = transactions[position].purchaseDate
-            holder.binding.cryptoPercent.text = transactions[position].amount.toString()
-        }
+        holder.bind(transactions[position])
     }
 
     override fun getItemCount(): Int {
