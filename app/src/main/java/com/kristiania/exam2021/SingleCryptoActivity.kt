@@ -3,6 +3,10 @@ package com.kristiania.exam2021
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.anychart.AnyChart
+import com.anychart.chart.common.dataentry.DataEntry
+import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.anychart.charts.Cartesian
 import com.kristiania.exam2021.databinding.ActivitySingleCryptoBinding
 import com.kristiania.exam2021.viewmodels.CryptoTransactionViewmodel
 import com.squareup.picasso.Picasso
@@ -20,6 +24,7 @@ class SingleCryptoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide() //remove the navbar
+        viewmodel = CryptoTransactionViewmodel(this)
 
         //Intent from the recyclerView at our beginning screen
         val startingIntent = intent
@@ -34,8 +39,17 @@ class SingleCryptoActivity : AppCompatActivity() {
         //Load image resource
         Picasso.get().load("https://static.coincap.io/assets/icons/${cryptoSymbol}@2x.png").into(binding.singleCryptoImage)
 
+        /*
+        //Chart
+        viewmodel.getChart(cryptoName!!.toLowerCase())
+        val series = viewmodel.getChartSeries()
+        val cartesian: Cartesian = AnyChart.column()
+        cartesian.column(series)
+        binding.coinChart.setChart(cartesian)
+
+
+         */
         //Gets the amount the user has of this coin
-        viewmodel = CryptoTransactionViewmodel(this)
         val totalAmount = viewmodel.getTotalOwned(cryptoName!!)
         totalAmount.observe(this){amount ->
             binding.sellButton.isEnabled = amount>0
@@ -63,5 +77,9 @@ class SingleCryptoActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewmodel.getTotalOwned(cryptoName!!)
+    }
+
+    private fun drawGraph(){
+
     }
 }

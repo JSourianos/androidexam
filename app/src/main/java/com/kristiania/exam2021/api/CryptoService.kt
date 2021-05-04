@@ -1,7 +1,10 @@
 package com.kristiania.exam2021.api
 
+import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.kristiania.exam2021.dataclasses.Data
 import com.kristiania.exam2021.dataclasses.DataList
+import com.kristiania.exam2021.dataclasses.Graph
+import com.kristiania.exam2021.dataclasses.GraphList
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -21,5 +24,5 @@ interface CryptoService {
 
     //Get graph
     @GET("v2/assets/{symbol}/history?interval=d1")
-    suspend fun getGraph(@Path("symbol") symbol: String)
+    suspend fun getGraph(@Path("symbol") symbol: String): GraphList
 }

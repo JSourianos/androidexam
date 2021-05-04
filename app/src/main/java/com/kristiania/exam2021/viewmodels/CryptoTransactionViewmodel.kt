@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.anychart.chart.common.dataentry.DataEntry
+import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.kristiania.exam2021.api.API
+import com.kristiania.exam2021.api.CryptoService
 import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.CryptoDb
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
@@ -11,9 +15,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CryptoTransactionViewmodel(context: Context) : ViewModel() {
+    private val cryptoService = API.cryptoService
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
     private var userPoints: Double = 0.0
     private var totalAmount = MutableLiveData(0)
+    private var series: ArrayList<DataEntry> = ArrayList()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -40,7 +46,23 @@ class CryptoTransactionViewmodel(context: Context) : ViewModel() {
         return totalAmount
     }
 
+    /*
+    fun getChart(coinSymbol: String){
+        viewModelScope.launch(Dispatchers.IO){
+            val dataPoints = cryptoService.getGraph(coinSymbol)
+            dataPoints.data.map {  dataPoint ->
+                series.add(ValueDataEntry(dataPoint.time.toString().toInt(), dataPoint.priceUsd?.toInt()))
+            }
+        }
+    }
+
+     */
+
     fun getUserPoints(): Double {
         return userPoints
+    }
+
+    fun getChartSeries(): List<DataEntry> {
+        return series
     }
 }
