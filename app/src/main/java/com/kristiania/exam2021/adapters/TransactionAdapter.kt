@@ -21,7 +21,7 @@ class TransactionAdapter(
                 binding.cryptoPrice.text = transactions.purchaseDate
                 binding.cryptoPercent.text = transactions.amount.toString()
 
-                //Change color based if we sold
+                //Change color based on if we sold or not
                 if(transactions.amount.toString().startsWith("-")){
                     binding.cryptoPercent.setTextColor(Color.parseColor("#FF0000"))
                 }

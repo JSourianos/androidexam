@@ -10,6 +10,7 @@ import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ActivityPortfolioBinding
 import com.kristiania.exam2021.viewmodels.PortfolioViewModel
+import java.text.DecimalFormat
 
 class PortfolioActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPortfolioBinding
@@ -31,7 +32,8 @@ class PortfolioActivity : AppCompatActivity() {
 
         //Add user points to portfolio
         viewModel.getUserPoints().observe(this){ userPoints ->
-            binding.portfolioPointsTv.text = "${userPoints?.toString()} USD"
+            val df = DecimalFormat("#.##")
+            binding.portfolioPointsTv.text = "${df.format(userPoints)}$ USD"
         }
 
         //Observe on a viewmodel function that returns a list
