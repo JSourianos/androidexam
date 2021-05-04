@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.MutableLiveData
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ActivitySellCryptoBinding
 import com.kristiania.exam2021.viewmodels.CryptoTransactionViewmodel
@@ -19,6 +20,7 @@ class SellCryptoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySellCryptoBinding
     private lateinit var transactionViewmodel: CryptoTransactionViewmodel
+    private lateinit var currentlyOwnedAmount: MutableLiveData<Int>
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,9 +44,9 @@ class SellCryptoActivity : AppCompatActivity() {
 
 
         //Input fields
-        binding.sellTvCrypto.text = cryptoName
         binding.sellEtUsd.isEnabled = false
         binding.sellEtUsd.setText(cryptoValue)
+        binding.holdingAmount.isEnabled = false
 
         //Function from StackOverflow, used to remove the keyboard after purchase
         //https://stackoverflow.com/questions/41790357/close-hide-the-android-soft-keyboard-with-kotlin
@@ -58,10 +60,10 @@ class SellCryptoActivity : AppCompatActivity() {
         binding.sellBtnCrypto.isEnabled = false
 
         //How many of the crypto you own
-        val currentlyOwnedAmount = transactionViewmodel.getTotalOwned(cryptoName!!)
+        currentlyOwnedAmount = transactionViewmodel.getTotalOwned(cryptoName!!)
         currentlyOwnedAmount.observe(this) { amount ->
             binding.sellBtnCrypto.isEnabled = amount > 0
-            Toast.makeText(this, "You currently have: $amount", Toast.LENGTH_SHORT).show()
+            binding.holdingAmount.setText(amount.toString())
         }
 
         binding.sellEtCrypto.addTextChangedListener {
@@ -69,7 +71,7 @@ class SellCryptoActivity : AppCompatActivity() {
                 binding.sellBtnCrypto.isEnabled = false
             } else {
                 val inputValue = binding.sellEtCrypto.text.toString().toInt()
-                binding.sellBtnCrypto.isEnabled = inputValue <= currentlyOwnedAmount.value ?: 0
+                binding.sellBtnCrypto.isEnabled = inputValue <= currentlyOwnedAmount.value ?: 0 && currentlyOwnedAmount.value!! >0
             }
         }
 
@@ -84,7 +86,6 @@ class SellCryptoActivity : AppCompatActivity() {
                 cryptoSymbol!!.toLowerCase()
             )
             transactionViewmodel.addCryptoTransaction(purchasedCryptoEntity)
-
             Toast.makeText(
                 this,
                 "You have sold $sellAmount $cryptoName for $cryptoValue",

@@ -32,6 +32,12 @@ class CryptoTransactionViewmodel(context: Context) : ViewModel() {
     fun addCryptoTransaction(purchasedCryptoEntity: PurchasedCryptoEntity){
         viewModelScope.launch(Dispatchers.IO){
             cryptoDao.addCryptoTransaction(purchasedCryptoEntity)
+            var amountRet = 0
+            val res = cryptoDao.getTransactionHistory()
+            res.map { cEl ->
+                if(cEl.name == purchasedCryptoEntity.name) amountRet += cEl.amount
+            }
+            totalAmount.postValue(amountRet)
         }
     }
 

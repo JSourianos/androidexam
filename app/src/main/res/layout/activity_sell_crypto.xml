@@ -34,8 +34,19 @@
         android:id="@+id/sellEtCrypto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="52dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sellEtUsd" />
+
+    <EditText
+        android:id="@+id/holdingAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="52dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,11 +57,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:text="cryptoname"
+        android:layout_marginTop="128dp"
+        android:text="Sell amount"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/sellEtCrypto"
         app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sellTvUsd" />
+
+    <TextView
+        android:id="@+id/holding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:text="Holding"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/sellEtCrypto"
+        app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sellTvUsd" />
 

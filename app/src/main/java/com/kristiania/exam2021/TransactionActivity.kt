@@ -31,7 +31,6 @@ class TransactionActivity : AppCompatActivity() {
         viewModel.getListOfTransactions().observe(this){ownedCryptos ->
             ownedCryptos.map {
                 transactionList.add(it)
-                Log.d("transactions: ", it.name)
                 adapter.notifyDataSetChanged()
             }
             adapter.notifyDataSetChanged()
