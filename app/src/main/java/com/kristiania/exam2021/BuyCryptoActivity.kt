@@ -55,7 +55,11 @@ class BuyCryptoActivity : AppCompatActivity() {
         }
 
         binding.buyBtnCrypto.setOnClickListener {
-            var purchaseAmount: Int = binding.buyEtCrypto.text.toString().toInt()
+            if(binding.buyEtCrypto.text.isNullOrEmpty()){
+                return@setOnClickListener
+            }
+            var purchaseAmount: Double = binding.buyEtCrypto.text.toString().toDouble()
+
             Log.d("PURCHASE AMOUNT: ", purchaseAmount.toString())
 
             val date: LocalDateTime = LocalDateTime.now()

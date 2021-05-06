@@ -20,7 +20,7 @@ class SellCryptoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySellCryptoBinding
     private lateinit var transactionViewmodel: CryptoTransactionViewmodel
-    private lateinit var currentlyOwnedAmount: MutableLiveData<Int>
+    private lateinit var currentlyOwnedAmount: MutableLiveData<Double>
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,15 +71,18 @@ class SellCryptoActivity : AppCompatActivity() {
             if (binding.sellEtCrypto.text.isNullOrBlank()) {
                 binding.sellBtnCrypto.isEnabled = false
             } else {
-                val inputValue = binding.sellEtCrypto.text.toString().toInt()
+                val inputValue = binding.sellEtCrypto.text.toString().toDouble()
                 binding.sellBtnCrypto.isEnabled =
-                    inputValue <= currentlyOwnedAmount.value ?: 0 && currentlyOwnedAmount.value!! > 0
+                    inputValue <= currentlyOwnedAmount.value ?: 0.0 && currentlyOwnedAmount.value!! > 0
             }
         }
 
         binding.sellBtnCrypto.setOnClickListener {
+            if(binding.sellEtCrypto.text.isNullOrEmpty()){
+                return@setOnClickListener
+            }
             val date: LocalDateTime = LocalDateTime.now()
-            val sellAmount = binding.sellEtCrypto.text.toString().toInt()
+            val sellAmount = binding.sellEtCrypto.text.toString().toDouble()
             val purchasedCryptoEntity = PurchasedCryptoEntity(
                 cryptoName!!,
                 sellAmount * -1,

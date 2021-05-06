@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class CryptoTransactionViewmodel(context: Context) : ViewModel() {
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
     private var userPoints: Double = 0.0
-    private var totalAmount = MutableLiveData(0)
+    private var totalAmount = MutableLiveData(0.0)
     private var series: ArrayList<DataEntry> = ArrayList()
 
     init {
@@ -27,7 +27,7 @@ class CryptoTransactionViewmodel(context: Context) : ViewModel() {
     fun addCryptoTransaction(purchasedCryptoEntity: PurchasedCryptoEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             cryptoDao.addCryptoTransaction(purchasedCryptoEntity)
-            var amountRet = 0
+            var amountRet = 0.0
             val res = cryptoDao.getTransactionHistory()
             res.map { cEl ->
                 if (cEl.name == purchasedCryptoEntity.name) amountRet += cEl.amount
@@ -36,9 +36,9 @@ class CryptoTransactionViewmodel(context: Context) : ViewModel() {
         }
     }
 
-    fun getTotalOwned(cryptoName: String): MutableLiveData<Int> {
+    fun getTotalOwned(cryptoName: String): MutableLiveData<Double> {
         viewModelScope.launch(Dispatchers.IO) {
-            var amountRet = 0
+            var amountRet = 0.0
             val res = cryptoDao.getTransactionHistory()
             res.map { cEl ->
                 if (cEl.name == cryptoName) amountRet += cEl.amount

@@ -40,7 +40,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/enter_amount"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sellEtUsd" />
 
@@ -51,10 +51,10 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sellEtUsd"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/sellEtUsd" />
 
     <TextView
         android:id="@+id/sellTvCrypto"

@@ -17,7 +17,7 @@ data class WalletEntity(
 @Entity
 data class PurchasedCryptoEntity(
     @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "amount") var amount: Int,
+    @ColumnInfo(name = "amount") var amount: Double,
     @ColumnInfo(name = "price") var price: Double,
     @ColumnInfo(name = "purchaseDate") var purchaseDate: String,
     @ColumnInfo(name = "symbol") var symbol: String
@@ -29,7 +29,7 @@ data class PurchasedCryptoEntity(
 //Our db and its entities
 @Database(
     entities = [WalletEntity::class, PurchasedCryptoEntity::class],
-    version = 16,
+    version = 18,
     exportSchema = false
 )
 
@@ -82,7 +82,7 @@ interface CryptoDao {
     data class CryptoHolding(
         @ColumnInfo(name = "name") val cryptoName: String,
         @ColumnInfo(name = "symbol") val symbol: String,
-        @ColumnInfo(name = "sum") val amount: Int
+        @ColumnInfo(name = "sum") val amount: Double
     )
 
     @Query("SELECT name, symbol, sum(amount) as sum FROM PurchasedCryptoEntity GROUP BY name HAVING sum > 0 ORDER BY sum DESC")

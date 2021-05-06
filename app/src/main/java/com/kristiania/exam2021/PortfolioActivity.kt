@@ -39,7 +39,6 @@ class PortfolioActivity : AppCompatActivity() {
         viewModel.getListOfCryptos().observe(this) { ownedCryptos ->
             ownedCryptos.map {
                 ownedCryptoList.add(it)
-                Log.d("OWNED CRYPTO: ", it.cryptoName)
                 adapter.notifyDataSetChanged()
             }
             adapter.notifyDataSetChanged()
