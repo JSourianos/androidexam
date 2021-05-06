@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         //We use the handler class to add a 3second delay to the MainActivity class
-        if(!hasSeenSplashScreen){
+        if (!hasSeenSplashScreen) {
             Handler().postDelayed({
                 //We send an Intent letting our app know that after 3 seconds, we want to switch to the home screen (main screen for our app)
                 val intent = Intent(this@MainActivity, HomeActivity::class.java)

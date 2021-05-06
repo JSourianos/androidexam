@@ -18,7 +18,7 @@ data class Crypto(
     var changePercent24Hr: String?,
     val vwap24Hr: String?,
     val explorer: String?
-    ){
+) {
     init {
         //Format the Crypto information to display numbers pretty
         val intPrice: Double? = priceUsd?.toDouble()

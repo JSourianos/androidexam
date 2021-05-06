@@ -68,7 +68,7 @@ class HomeViewModel(context: Context) : ViewModel() {
 
     //Update user points when we resume HomeActivity++
     fun getUpdatedUserPoints() {
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             userPoints.postValue(cryptoDao.getTotalUserPoints())
         }
     }

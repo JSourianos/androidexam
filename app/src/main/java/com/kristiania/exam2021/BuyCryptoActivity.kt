@@ -19,6 +19,7 @@ class BuyCryptoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBuyCryptoBinding
     private lateinit var transactionViewmodel: CryptoTransactionViewmodel
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,8 @@ class BuyCryptoActivity : AppCompatActivity() {
         //Top bar showing crypto name and price
         binding.tvCryptoName.text = cryptoName
         binding.tvCryptoPrice.text = cryptoValue
-        Picasso.get().load("https://static.coincap.io/assets/icons/${cryptoSymbol}@2x.png").into(binding.buyImageView)
+        Picasso.get().load("https://static.coincap.io/assets/icons/${cryptoSymbol}@2x.png")
+            .into(binding.buyImageView)
 
         //Input fields
         binding.buyTvCrypto.text = cryptoName
@@ -47,7 +49,8 @@ class BuyCryptoActivity : AppCompatActivity() {
         //Function from StackOverflow, used to remove the keyboard after purchase
         //https://stackoverflow.com/questions/41790357/close-hide-the-android-soft-keyboard-with-kotlin
         fun View.hideKeyboard() {
-            val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val inputManager =
+                context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputManager.hideSoftInputFromWindow(windowToken, 0)
         }
 
@@ -59,16 +62,31 @@ class BuyCryptoActivity : AppCompatActivity() {
 
             var userPoints = transactionViewmodel.getUserPoints().toString().toDouble()
 
-            if(userPoints > (purchaseAmount * cryptoValue!!.toDouble())){
-                val purchasedCryptoEntity = PurchasedCryptoEntity(cryptoName!!, purchaseAmount, cryptoValue!!.toDouble(), date.toString(), cryptoSymbol!!.toLowerCase())
+            if (userPoints > (purchaseAmount * cryptoValue!!.toDouble())) {
+                val purchasedCryptoEntity = PurchasedCryptoEntity(
+                    cryptoName!!,
+                    purchaseAmount,
+                    cryptoValue!!.toDouble(),
+                    date.toString(),
+                    cryptoSymbol!!.toLowerCase()
+                )
                 transactionViewmodel.addCryptoTransaction(purchasedCryptoEntity)
 
-                Toast.makeText(this, "You have purchased $purchaseAmount $cryptoName for $cryptoValue", Toast.LENGTH_SHORT).show() //display success toast
+                //The USD amount of the sale
+                var totalAmount =
+                    purchaseAmount.toString().toDouble() * cryptoValue!!.toString().toDouble()
+
+                Toast.makeText(
+                    this,
+                    "You have purchased $purchaseAmount $cryptoName for ${totalAmount}$",
+                    Toast.LENGTH_SHORT
+                ).show() //display success toast
                 binding.buyEtCrypto.text = null //reset input field
                 binding.buyEtCrypto.clearFocus() // clear focus
                 it.hideKeyboard() // hide keyboard
             } else {
-                Toast.makeText(this, "You dont have sufficient funds", Toast.LENGTH_SHORT).show() //display error toast
+                Toast.makeText(this, "You dont have sufficient funds", Toast.LENGTH_SHORT)
+                    .show() //display error toast
             }
 
         }

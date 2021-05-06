@@ -40,7 +40,8 @@ class SellCryptoActivity : AppCompatActivity() {
         //Top bar showing crypto name and price
         binding.tvCryptoName.text = cryptoName
         binding.tvCryptoPrice.text = cryptoValue
-        Picasso.get().load("https://static.coincap.io/assets/icons/${cryptoSymbol}@2x.png").into(binding.selImageView)
+        Picasso.get().load("https://static.coincap.io/assets/icons/${cryptoSymbol}@2x.png")
+            .into(binding.selImageView)
 
 
         //Input fields
@@ -71,7 +72,8 @@ class SellCryptoActivity : AppCompatActivity() {
                 binding.sellBtnCrypto.isEnabled = false
             } else {
                 val inputValue = binding.sellEtCrypto.text.toString().toInt()
-                binding.sellBtnCrypto.isEnabled = inputValue <= currentlyOwnedAmount.value ?: 0 && currentlyOwnedAmount.value!! >0
+                binding.sellBtnCrypto.isEnabled =
+                    inputValue <= currentlyOwnedAmount.value ?: 0 && currentlyOwnedAmount.value!! > 0
             }
         }
 
@@ -86,9 +88,13 @@ class SellCryptoActivity : AppCompatActivity() {
                 cryptoSymbol!!.toLowerCase()
             )
             transactionViewmodel.addCryptoTransaction(purchasedCryptoEntity)
+
+            //The USD amount of the sale
+            var totalAmount = sellAmount.toString().toDouble() * cryptoValue!!.toString().toDouble()
+
             Toast.makeText(
                 this,
-                "You have sold $sellAmount $cryptoName for $cryptoValue",
+                "You have sold $sellAmount $cryptoName for ${(totalAmount)}$",
                 Toast.LENGTH_SHORT
             ).show() //display success toast
             binding.sellEtCrypto.text = null //reset input field

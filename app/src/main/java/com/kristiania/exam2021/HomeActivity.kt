@@ -35,7 +35,8 @@ class HomeActivity : AppCompatActivity() {
 
         //Display amount of user points the user has
         viewModel.getUserPoints().observe(this) { userPoints ->
-            val df = DecimalFormat("#.##") // need to format the number so it doesnt have a million decimals
+            val df =
+                DecimalFormat("#.##") // need to format the number so it doesnt have a million decimals
             binding.userPointsTv.text = "Current Balance: ${df.format(userPoints)}$"
         }
 

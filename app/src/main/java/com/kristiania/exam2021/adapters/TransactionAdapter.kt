@@ -24,27 +24,30 @@ class TransactionAdapter(
 
 
     inner class TransactionViewHolder(val binding: ItemCryptoBinding) :
-        RecyclerView.ViewHolder(binding.root){
-            @RequiresApi(Build.VERSION_CODES.O)
-            fun bind(transactions: PurchasedCryptoEntity){
-                binding.itemCrypto.text = transactions.name
-                binding.cryptoPrice.text = LocalDateTime.parse(transactions.purchaseDate).format(DateTimeFormatter.ofPattern("MMMM d, yyyy, H:m"))
-                if(transactions.amount < 0){
-                    var amount = transactions.amount.toString().replace("-", "") //remove minus
-                    binding.cryptoPercent.text = "Sold: ${amount}"
-                } else {
-                    binding.cryptoPercent.text = "Bought: ${transactions.amount.toString()}"
-                }
-
-                //Change color based on if we sold or not
-                if(transactions.amount.toString().startsWith("-")){
-                    binding.cryptoPercent.setTextColor(Color.parseColor("#FF0000"))
-                }
-
-                //Fetch image resource
-                Picasso.get().load("https://static.coincap.io/assets/icons/${transactions.symbol.toLowerCase()}@2x.png").into(binding.cryptoImage)
+        RecyclerView.ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun bind(transactions: PurchasedCryptoEntity) {
+            binding.itemCrypto.text = transactions.name
+            binding.cryptoPrice.text = LocalDateTime.parse(transactions.purchaseDate)
+                .format(DateTimeFormatter.ofPattern("MMMM d, yyyy, H:m"))
+            if (transactions.amount < 0) {
+                var amount = transactions.amount.toString().replace("-", "") //remove minus
+                binding.cryptoPercent.text = "Sold: ${amount}"
+            } else {
+                binding.cryptoPercent.text = "Bought: ${transactions.amount.toString()}"
             }
+
+            //Change color based on if we sold or not
+            if (transactions.amount.toString().startsWith("-")) {
+                binding.cryptoPercent.setTextColor(Color.parseColor("#FF0000"))
+            }
+
+            //Fetch image resource
+            Picasso.get()
+                .load("https://static.coincap.io/assets/icons/${transactions.symbol.toLowerCase()}@2x.png")
+                .into(binding.cryptoImage)
         }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val binding =

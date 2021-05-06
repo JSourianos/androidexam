@@ -28,13 +28,12 @@ class TransactionActivity : AppCompatActivity() {
         binding.rvTransactions.adapter = adapter
         binding.rvTransactions.layoutManager = LinearLayoutManager(this)
 
-        viewModel.getListOfTransactions().observe(this){ownedCryptos ->
+        viewModel.getListOfTransactions().observe(this) { ownedCryptos ->
             ownedCryptos.map {
                 transactionList.add(it)
                 adapter.notifyDataSetChanged()
             }
             adapter.notifyDataSetChanged()
         }
-
     }
 }

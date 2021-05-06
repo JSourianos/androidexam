@@ -29,7 +29,7 @@ data class PurchasedCryptoEntity(
 //Our db and its entities
 @Database(
     entities = [WalletEntity::class, PurchasedCryptoEntity::class],
-    version = 15,
+    version = 16,
     exportSchema = false
 )
 

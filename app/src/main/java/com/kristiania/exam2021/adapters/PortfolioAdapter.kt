@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 
 class PortfolioAdapter(
     var ownedCryptos: List<CryptoDao.CryptoHolding>
-    ) : RecyclerView.Adapter<PortfolioAdapter.PortfolioViewHolder>() {
+) : RecyclerView.Adapter<PortfolioAdapter.PortfolioViewHolder>() {
 
 
     inner class PortfolioViewHolder(val binding: ItemCryptoBinding) :
@@ -28,11 +28,14 @@ class PortfolioAdapter(
             holder.binding.cryptoPrice.setTextSize(20f)
             holder.binding.itemCrypto.text = ownedCryptos[position].cryptoName
             holder.binding.cryptoPrice.setTextSize(16F) // bigger text
-            holder.binding.cryptoPrice.text = "Current Holding: ${ownedCryptos[position].amount.toString()}"
+            holder.binding.cryptoPrice.text =
+                "Current Holding: ${ownedCryptos[position].amount.toString()}"
             holder.binding.cryptoPercent.text = "" // change this later?
 
             //Fetch image resource
-            Picasso.get().load("https://static.coincap.io/assets/icons/${ownedCryptos[position].symbol}@2x.png").into(holder.binding.cryptoImage)
+            Picasso.get()
+                .load("https://static.coincap.io/assets/icons/${ownedCryptos[position].symbol}@2x.png")
+                .into(holder.binding.cryptoImage)
         }
     }
 

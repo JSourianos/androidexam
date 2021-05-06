@@ -29,24 +29,24 @@ class CryptoTransactionViewmodel(context: Context) : ViewModel() {
         }
     }
 
-    fun addCryptoTransaction(purchasedCryptoEntity: PurchasedCryptoEntity){
-        viewModelScope.launch(Dispatchers.IO){
+    fun addCryptoTransaction(purchasedCryptoEntity: PurchasedCryptoEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
             cryptoDao.addCryptoTransaction(purchasedCryptoEntity)
             var amountRet = 0
             val res = cryptoDao.getTransactionHistory()
             res.map { cEl ->
-                if(cEl.name == purchasedCryptoEntity.name) amountRet += cEl.amount
+                if (cEl.name == purchasedCryptoEntity.name) amountRet += cEl.amount
             }
             totalAmount.postValue(amountRet)
         }
     }
 
-    fun getTotalOwned(cryptoName: String): MutableLiveData<Int>{
+    fun getTotalOwned(cryptoName: String): MutableLiveData<Int> {
         viewModelScope.launch(Dispatchers.IO) {
             var amountRet = 0
             val res = cryptoDao.getTransactionHistory()
             res.map { cEl ->
-                if(cEl.name == cryptoName) amountRet += cEl.amount
+                if (cEl.name == cryptoName) amountRet += cEl.amount
             }
             totalAmount.postValue(amountRet)
         }

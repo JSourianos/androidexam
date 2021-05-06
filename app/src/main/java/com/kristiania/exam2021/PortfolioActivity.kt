@@ -31,13 +31,13 @@ class PortfolioActivity : AppCompatActivity() {
         binding.rvPortfolio.layoutManager = LinearLayoutManager(this)
 
         //Add user points to portfolio
-        viewModel.getUserPoints().observe(this){ userPoints ->
+        viewModel.getUserPoints().observe(this) { userPoints ->
             val df = DecimalFormat("#.##")
             binding.portfolioPointsTv.text = "${df.format(userPoints)}$ USD"
         }
 
         //Observe on a viewmodel function that returns a list
-        viewModel.getListOfCryptos().observe(this){ownedCryptos ->
+        viewModel.getListOfCryptos().observe(this) { ownedCryptos ->
             ownedCryptos.map {
                 ownedCryptoList.add(it)
                 Log.d("OWNED CRYPTO: ", it.cryptoName)

@@ -1,10 +1,7 @@
 package com.kristiania.exam2021.api
 
-import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.kristiania.exam2021.dataclasses.Data
 import com.kristiania.exam2021.dataclasses.DataList
-import com.kristiania.exam2021.dataclasses.Graph
-import com.kristiania.exam2021.dataclasses.GraphList
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -18,11 +15,4 @@ interface CryptoService {
     @GET("v2/assets/{id}")
     suspend fun getCryptoCurrency(@Path("id") id: String): Data
 
-    //Get image resource
-    @GET("https://static.coincap.io/assets/icons/{symbol}@2x.png")
-    suspend fun getImage(@Path("symbol") symbol: String)
-
-    //Get graph
-    @GET("v2/assets/{symbol}/history?interval=d1")
-    suspend fun getGraph(@Path("symbol") symbol: String): GraphList
 }

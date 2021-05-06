@@ -37,23 +37,13 @@ class SingleCryptoActivity : AppCompatActivity() {
         binding.cryptoValue.text = "$${cryptoValue}"
 
         //Load image resource
-        Picasso.get().load("https://static.coincap.io/assets/icons/${cryptoSymbol}@2x.png").into(binding.singleCryptoImage)
-
-        /*
-        //Chart
-        viewmodel.getChart("bitcoin")
-        val series = viewmodel.getChartSeries()
-        val cartesian: Cartesian = AnyChart.line()
-        cartesian.line(series)
-        binding.coinChart.setChart(cartesian)
-
-
-         */
+        Picasso.get().load("https://static.coincap.io/assets/icons/${cryptoSymbol}@2x.png")
+            .into(binding.singleCryptoImage)
 
         //Gets the amount the user has of this coin
         val totalAmount = viewmodel.getTotalOwned(cryptoName!!)
-        totalAmount.observe(this){amount ->
-            binding.sellButton.isEnabled = amount>0
+        totalAmount.observe(this) { amount ->
+            binding.sellButton.isEnabled = amount > 0
         }
 
         //Start buy activity
