@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
 class CryptoTransactionViewmodel(context: Context) : ViewModel() {
-    private val cryptoService = API.cryptoService
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
     private var userPoints: Double = 0.0
     private var totalAmount = MutableLiveData(0)
@@ -53,18 +52,6 @@ class CryptoTransactionViewmodel(context: Context) : ViewModel() {
         return totalAmount
     }
 
-    /*
-    fun getChart(coinSymbol: String){
-        viewModelScope.launch(Dispatchers.IO){
-            val dataPoints = cryptoService.getGraph(coinSymbol)
-            dataPoints.data.map {  dataPoint ->
-                series.add(ValueDataEntry("why", 10))
-            }
-        }
-    }
-
-
-     */
     fun getUserPoints(): Double {
         return userPoints
     }

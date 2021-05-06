@@ -22,7 +22,6 @@ class HomeViewModel(context: Context) : ViewModel() {
     private val cryptoService = API.cryptoService
 
     private val allCryptoCurrencies = MutableLiveData<DataList>()
-    private val allImages = MutableLiveData<Unit>()
 
     //DATABASE
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()
