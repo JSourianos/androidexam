@@ -2,18 +2,13 @@ package com.kristiania.exam2021.adapters
 
 import android.content.Intent
 import android.graphics.Color
-import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
-import com.kristiania.exam2021.R
 import com.kristiania.exam2021.SingleCryptoActivity
-import com.kristiania.exam2021.api.CryptoService
 import com.kristiania.exam2021.databinding.ItemCryptoBinding
 import com.kristiania.exam2021.dataclasses.Crypto
 import com.squareup.picasso.Picasso
-import kotlin.math.roundToLong
 
 //Adapter for our RecyclerView
 class CryptoAdapter(

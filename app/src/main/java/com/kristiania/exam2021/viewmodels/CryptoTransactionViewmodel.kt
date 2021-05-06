@@ -5,15 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.anychart.chart.common.dataentry.DataEntry
-import com.anychart.chart.common.dataentry.ValueDataEntry
-import com.kristiania.exam2021.api.API
-import com.kristiania.exam2021.api.CryptoService
 import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.CryptoDb
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 
 class CryptoTransactionViewmodel(context: Context) : ViewModel() {
     private var cryptoDao: CryptoDao = CryptoDb.get(context).getDao()

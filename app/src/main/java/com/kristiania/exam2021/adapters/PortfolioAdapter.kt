@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kristiania.exam2021.database.CryptoDao
-import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ItemCryptoBinding
 import com.squareup.picasso.Picasso
 

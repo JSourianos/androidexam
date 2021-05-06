@@ -1,11 +1,9 @@
 package com.kristiania.exam2021
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kristiania.exam2021.adapters.TransactionAdapter
-import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ActivityTransactionBinding
 import com.kristiania.exam2021.viewmodels.PortfolioViewModel

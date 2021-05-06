@@ -1,22 +1,16 @@
 package com.kristiania.exam2021.adapters
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.kristiania.exam2021.database.CryptoDao
 import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ItemCryptoBinding
 import com.squareup.picasso.Picasso
-import java.lang.String.format
-import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class TransactionAdapter(
     var transactions: MutableList<PurchasedCryptoEntity>

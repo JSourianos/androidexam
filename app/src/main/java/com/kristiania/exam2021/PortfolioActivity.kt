@@ -1,13 +1,12 @@
 package com.kristiania.exam2021
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kristiania.exam2021.adapters.PortfolioAdapter
 import com.kristiania.exam2021.database.CryptoDao
-import com.kristiania.exam2021.database.PurchasedCryptoEntity
 import com.kristiania.exam2021.databinding.ActivityPortfolioBinding
 import com.kristiania.exam2021.viewmodels.PortfolioViewModel
 import java.text.DecimalFormat
