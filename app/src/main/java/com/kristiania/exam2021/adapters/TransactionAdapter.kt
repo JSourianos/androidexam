@@ -28,6 +28,7 @@ class TransactionAdapter(
                 var amount = transactions.amount.toString().replace("-", "") //remove minus
                 binding.cryptoPercent.text = "Sold: ${amount}"
             } else {
+                binding.cryptoPercent.setTextColor(Color.parseColor("#008000"))
                 binding.cryptoPercent.text = "Bought: ${transactions.amount.toString()}"
             }
 

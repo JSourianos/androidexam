@@ -35,6 +35,7 @@
         android:layout_height="88dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="112dp"
+        android:contentDescription="@string/image_of_cryptocoin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -44,9 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
-        android:textSize="40sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/singleCryptoImage"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="TextView" />
@@ -55,19 +56,12 @@
         android:id="@+id/cryptoValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="8dp"
-        android:text="PRIS HER"
+        android:text="@string/_343"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/singleCryptoImage"
         app:layout_constraintTop_toBottomOf="@+id/cryptoName" />
 
-    <com.anychart.AnyChartView
-        android:id="@+id/coinChart"
-        android:layout_width="276dp"
-        android:layout_height="206dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sellButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,8 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="52dp"
         android:ems="10"
+        android:hint="@string/enter_amount"
+        android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCryptoName" />
@@ -23,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
-        android:text="USD"
+        android:text="@string/usd"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/buyEtUsd"
         app:layout_constraintHorizontal_bias="0.491"
@@ -39,7 +41,8 @@
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buyEtUsd" />
+        app:layout_constraintTop_toBottomOf="@+id/buyEtUsd"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/buyTvCrypto"
@@ -47,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:text="cryptoname"
+        android:text="@string/cryptoname"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/buyEtCrypto"
         app:layout_constraintHorizontal_bias="0.314"
@@ -69,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.73"
@@ -81,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="TextView"
+        android:text="@string/textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.73"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,6 +94,7 @@
         android:id="@+id/buyImageView"
         android:layout_width="91dp"
         android:layout_height="79dp"
+        android:contentDescription="@string/image_of_cryptocoin"
         app:layout_constraintBottom_toTopOf="@+id/buyTvUsd"
         app:layout_constraintEnd_toStartOf="@+id/tvCryptoName"
         app:layout_constraintHorizontal_bias="0.322"

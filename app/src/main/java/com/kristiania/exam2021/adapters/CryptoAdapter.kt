@@ -45,7 +45,7 @@ class CryptoAdapter(
             if (cryptos.changePercent24Hr?.toDouble()!! < 0) {
                 binding.cryptoPercent.setTextColor(Color.parseColor("#FF0000"))
             } else {
-                binding.cryptoPercent.setTextColor(Color.parseColor("#00FF00"))
+                binding.cryptoPercent.setTextColor(Color.parseColor("#008000"))
             }
 
         }
