@@ -1,4 +1,8 @@
 # ANDROID EXAM
+
+How to build:
+- https://stackoverflow.com/questions/53592516/how-to-compile-a-github-project-in-android-studio/53592672
+
 ## SchieEX
 ### The Worlds Top Rated (fake) Crypto Exchange
 - This application is our exam delivery for the course Android Programming (PGR208). It is an application which lists cryptocurrencies from coincap.io. You can click on a certain cryptocurrency, and choose whether to buy it, or sell it if you own it. If you choose to buy, you will be sent to a screen where you can enter the amount of crypto you wish to purchase.
